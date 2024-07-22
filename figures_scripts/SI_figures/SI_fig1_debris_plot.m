@@ -43,6 +43,8 @@ set(gca,'FontSize',24);
 xlim([0 8]);
 xticks(0:2:16)
 legend('CBA 4', 'CBA 18', 'CBA 38', 'PSA H100', 'PSA 13-15');
+set(gca,'fontname','times')
+
 
 subplot(1,2,2)
 plot(D2,prob,'LineWidth',2.5,'Color',red1);
@@ -76,6 +78,8 @@ xticklabels({'0','2','4','6','8','10'});
 yticks([0.001,0.01,0.1,0.5,1]);
 ylim([0.001 1])
 legend('CBA 4', 'CBA 18', 'CBA 38', 'PSA H100', 'PSA 13-15');
+
+set(gca,'fontname','times')
 
 
 % subplot(1,3,3)
