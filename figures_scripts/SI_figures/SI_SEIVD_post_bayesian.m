@@ -560,10 +560,49 @@ set(gca, 'fontname','times');
 
 %% covariance plots.
 
-correlation_pearson = corrcoef(chain(30000:end,:));
-imagesc(correlation_pearson);
+
+load('./../../community/results/v23.mat');
+%load('./../../community/results/v25.mat');
+
+n = 256; % Number of colors in the colormap
+blue_gradient = linspace(0,1,n)'.*[1,1,1] + (1-linspace(0,1,n))'.*[0,0,1];
+red_gradient = linspace(0,1,n)'.*[1,1,1] + (1-linspace(0,1,n))'.*[1,0,0];
+% Combine gradients into a colormap
+blueredColormap = [red_gradient; flipud(blue_gradient)];
+
+
+
+correlation_pearson = corrcoef(chain(30000:10:end,:));
+
+for i = 1:37
+    for j = 1:37
+        if i<=j | abs(correlation_pearson(i,j))<0.5
+        %if i<=j
+            correlation_pearson(i,j) = 0;
+        end
+    end
+end
+
+
 
 % this will not be used in the paper and I will only revisit them if I have
 % to.
+
+
+
+figure
+imagesc(correlation_pearson);
+colorbar;
+clim([-1, 1]); % Set the limits of the color axis
+colormap(blueredColormap );
+title("pearson correlation between posteriors");
+axis("square");
+set(gca,'fontname','times');
+set(gca,'FontSize',24);
+set(gca, 'XTick', [5 14 23 30 35]);
+set(gca, 'XTickLabel', { '\beta_{ij} ' '\phi_{ij}' '\tau_{ij}' 'r_i' '{Dc}_i'});
+set(gca, 'YTick', [5 14 23 30 35]);
+set(gca, 'YTickLabel', { '\beta_{ij} ' '\phi_{ij}' '\tau_{ij}' 'r_i' '{Dc}_i'});
+
 
 
