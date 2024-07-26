@@ -6,7 +6,7 @@ mean_tau = 2;
 x = 0:0.01:2*mean_tau;
 
 i=0;
-NE = [1,10,100];
+NE = [1,5,10,25,100];
 
 
 hf = figure;
@@ -77,9 +77,9 @@ dilution_factor = 100;
 subplot(length(NE),2,2*i);
 semilogy(time2,y_series2(end,:),'-k', 'LineWidth',2);
 
-if i == 3
+if i == 5
     xlabel('Time (hrs)');
-elseif i == 2  
+elseif i == 3  
     ylabel('Phage density (virions/ml)');
 end
 yticks([1e2 1e3 1e4 1e5 1e6 1e7 1e8 1e9 1e10]);
