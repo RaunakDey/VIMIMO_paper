@@ -78,8 +78,12 @@ model.S20 = error_prior;
 model.N0 = 1;
 options.updatesigma = 1;
 
+%new
+model.S20 = 1;
+seed = 100;
 
-options.nsimu =  10000;
+
+options.nsimu =  50000;
 [results, chain, s2chain] = mcmcrun(model,data,params,options);
 
 chainstats(chain,results);
@@ -103,4 +107,4 @@ dilution_factor = 100;
 
 %% saving
 
-save("./result_replicates/"+name+string(seed));
+save("./result_replicates/HP1_13-15_"+string(seed));

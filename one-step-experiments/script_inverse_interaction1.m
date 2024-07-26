@@ -18,7 +18,7 @@ load('parameters.mat','pars');
 format short g
 
 
-seed = 13;
+seed = 100;
 
 num_replicates = 1;
 
@@ -87,10 +87,15 @@ model.N0 = 1;
 error_prior = 1;
 model.N0 = 4;
 
+
+%new
+model.S20 = 1;
+seed = 100;
+
 options.updatesigma = 1;
 
 
-options.nsimu =  10000;
+options.nsimu =  50000;
 [results, chain, s2chain] = mcmcrun(model,data,params,options);
 
 chainstats(chain,results);
