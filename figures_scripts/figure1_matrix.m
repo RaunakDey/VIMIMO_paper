@@ -6,7 +6,7 @@ binary_matrix = [ 0 1 0 0 0;
                  0 0 0 1 1];
 
 % Define the color for value '1'
-color_blue = [0 0.1 1];
+color_blue = [0.5 0.5 0.5];
 
 % Create the figure
 figure;

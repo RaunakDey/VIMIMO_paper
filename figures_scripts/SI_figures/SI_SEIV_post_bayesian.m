@@ -70,14 +70,17 @@ figure(1)
 for i=1:9
 subplot(2,5,i)
 xaxis = linspace( mu_prior(i) - 3*sigma_prior(i),  mu_prior(i) + 3*sigma_prior(i) ,100);
+
+hold on;
+smoothHistogram(chain(transient_id:end,i),6,'b');
+% h = histogram(chain(transient_id:end,i),"NumBins",30,'Normalization','pdf',DisplayStyle='stairs',EdgeColor='w');
+% bins = 0.5*(h.BinEdges(2:end) +  h.BinEdges(1:end-1));
+% values = h.Values;
+% plot(bins,values,'LineWidth',2,'Color','b')
 plot(xaxis, ...
     gaussian(xaxis,mu_prior(i),sigma_prior(i)), ...
     "Color",'k',LineWidth=2);
-hold on;
-smoothHistogram(chain(transient_id:end,i),6,'b');
-%smoothHistogram(chain2(transient_id:end,i),6,'r');
-%histogram(chain(transient_id:end,i),"Normalization","pdf",DisplayStyle="stairs");
-%histogram(chain2(transient_id:end,i), "Normalization","pdf",DisplayStyle="stairs");
+
 
 xlim([min(chain(transient_id:end,i))-50 max(chain(transient_id:end,i))+50 ]);
 xlabel('\beta (virions/cell)');
@@ -92,17 +95,22 @@ for i=1:9
 subplot(2,5,i)
 i=i+9;
 xaxis = linspace( mu_prior(i) - 3*sigma_prior(i),  mu_prior(i) + 3*sigma_prior(i) ,100);
+hold on;
+smoothHistogram(chain(transient_id:end,i),6,'b');
+% h = histogram(chain(transient_id:end,i),"NumBins",30,'Normalization','pdf',DisplayStyle='stairs',EdgeColor='w');
+% bins = 0.5*(h.BinEdges(2:end) +  h.BinEdges(1:end-1));
+% values = h.Values;
+% plot(bins,values,'LineWidth',2,'Color','b')
+
 plot(xaxis, ...
     gaussian(xaxis,mu_prior(i),sigma_prior(i)), ...
     "Color",'k',LineWidth=2);
-hold on;
-smoothHistogram(chain(transient_id:end,i),6,'b');
-%smoothHistogram(chain2(transient_id:end,i),6,'r');
 
-xlabel('\phi (ml/hr/cell)');
+xlabel('log(\phi) (ml/hr/cell)');
 ylabel('PDF');
 xlim([min(chain(transient_id:end,i))-1 max(chain(transient_id:end,i))+1 ]);
 set(gca,'FontSize',20);
+box on;
 end
 
 
@@ -114,12 +122,16 @@ for i=1:9
 subplot(2,5,i)
 i=i+18;
 xaxis = linspace( mu_prior(i) - 3*sigma_prior(i),  mu_prior(i) + 3*sigma_prior(i) ,100);
+hold on;
+smoothHistogram(chain(transient_id:end,i),6,'b');
+% h = histogram(chain(transient_id:end,i),"NumBins",30,'Normalization','pdf',DisplayStyle='stairs',EdgeColor='w');
+% bins = 0.5*(h.BinEdges(2:end) +  h.BinEdges(1:end-1));
+% values = h.Values;
+% plot(bins,values,'LineWidth',2,'Color','b')
+
 plot(xaxis, ...
     gaussian(xaxis,mu_prior(i),sigma_prior(i)), ...
     "Color",'k',LineWidth=2);
-hold on;
-smoothHistogram(chain(transient_id:end,i),6,'b');
-%smoothHistogram(chain2(transient_id:end,i),6,'r');
 
 xlabel('\tau (hr)');
 ylabel('PDF');
@@ -133,15 +145,21 @@ end
 figure(4)
 
 for i=1:5
-subplot(2,5,i)
+subplot(1,5,i)
 i=i+27;
 xaxis = linspace( mu_prior(i) - 3*sigma_prior(i),  mu_prior(i) + 3*sigma_prior(i) ,100);
+hold on;
+smoothHistogram(chain(transient_id:end,i),6,'b');
+% h = histogram(chain(transient_id:end,i),"NumBins",30,'Normalization','pdf',DisplayStyle='stairs',EdgeColor='w');
+% bins = 0.5*(h.BinEdges(2:end) +  h.BinEdges(1:end-1));
+% values = h.Values;
+% plot(bins,values,'LineWidth',2,'Color','b')
+
+
 plot(xaxis, ...
     gaussian(xaxis,mu_prior(i),sigma_prior(i)), ...
     "Color",'k',LineWidth=2);
-hold on;
-smoothHistogram(chain(transient_id:end,i),6,'b');
-%smoothHistogram(chain2(transient_id:end,i),6,'r');
+
 
 xlabel('r (/hr)');
 ylabel('PDF');
@@ -441,8 +459,8 @@ R_1(R_1<1) = 1;
 
 
 
-
-
+figure(101)
+subplot(2,1,1)
 b = bar(R_1,'FaceColor','flat');
 
 for i = 1:9
@@ -487,6 +505,8 @@ chainstats1 = chainstats(chain(30000:end,:));
 
 geweke_stats = chainstats1(:,5);
 
+figure(101)
+subplot(2,1,2)
 b = bar(geweke_stats,'FaceColor','flat');
 
 for i = 1:9

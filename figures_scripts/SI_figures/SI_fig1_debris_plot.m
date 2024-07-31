@@ -38,7 +38,7 @@ plot(t2,prob3,'LineWidth',2.5,'Color',red3);
 plot(t2,prob4,'LineWidth',2.5,'Color',blue1);
 plot(t2,prob5,'LineWidth',2.5,'Color',blue2);
 xlabel('Time (hours)');
-ylabel('Probability of lysis inhibition');
+ylabel('Probability of infection inhibition');
 set(gca,'FontSize',24);
 xlim([0 8]);
 xticks(0:2:16)
@@ -56,7 +56,7 @@ plot(D2,prob5,'LineWidth',2.5,'Color',blue2);
 
 set(gca, 'YScale', 'log')
 xlabel({'Debris concentration', '(10^7 Lysed cells/ml)'});
-ylabel({'Probability of lysis inhibition'});
+ylabel({'Probability of infection inhibition'});
 set(gca,'FontSize',24);
 yline(0.5,'--k',LineWidth=1.5);
 

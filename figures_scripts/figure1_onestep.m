@@ -11,7 +11,7 @@ color_blue = [70/255,130/255,180/255];
 
 
 color_green =[171,193,157]./255;
-skips = 1000;
+skips = 10;
 
 tvec_long = 0:0.01:3.5;
 
@@ -51,7 +51,7 @@ end
 xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','r','MarkerFaceColor','r','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
-set(gca,'FontSize',18)
+set(gca,'FontName','Times','FontSize',18)
 title('\phi18:2--CBA 18');
 %ylim([1e2 1e9]);
 %xlim([0 3.5]);
@@ -100,7 +100,7 @@ end
 xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','r','MarkerFaceColor','r','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
-set(gca,'FontSize',18)
+set(gca,'FontName','Times','FontSize',18)
 title('\phi18:3--CBA 4');
 %ylim([1e2 1e9]);
 %xlim([0 3.5]);
@@ -148,7 +148,7 @@ end
 xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','r','MarkerFaceColor','r','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
-set(gca,'FontSize',18)
+set(gca,'FontName','Times','FontSize',18)
 title('\phi18:3--CBA 18');
 %ylim([1e2 1e9]);
 %xlim([0 3.5]);
@@ -195,7 +195,7 @@ end
 xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','r','MarkerFaceColor','r','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
-set(gca,'FontSize',18)
+set(gca,'FontName','Times','FontSize',18)
 title('\phi38:1--CBA 38');
 %ylim([1e2 1e9]);
 %xlim([0 3.5]);
@@ -250,7 +250,7 @@ end
 xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','r','MarkerFaceColor','r','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
-set(gca,'FontSize',18)
+set(gca,'FontName','Times','FontSize',18)
 title('PSA HP1--PSA H100');
 %ylim([1e2 1e9]);
 %xlim([0 3.5]);
@@ -300,7 +300,7 @@ end
 xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','r','MarkerFaceColor','r','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
-set(gca,'FontSize',18)
+set(gca,'FontName','Times','FontSize',18)
 title('PSA HP1--PSA 13-15');
 %ylim([1e2 1e9]);
 %xlim([0 3.5]);
@@ -349,7 +349,7 @@ end
 xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','r','MarkerFaceColor','r','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
-set(gca,'FontSize',18)
+set(gca,'FontName','Times','FontSize',18)
 title('PSA HS6--PSA H100');
 %ylim([1e2 1e9]);
 %xlim([0 3.5]);
@@ -399,7 +399,7 @@ end
 xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','r','MarkerFaceColor','r','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
-set(gca,'FontSize',18)
+set(gca,'FontName','Times','FontSize',18)
 title('PSA HS6--PSA 13-15');
 %ylim([1e2 1e9]);
 %xlim([0 3.5]);
@@ -466,7 +466,7 @@ hold on;
 errorbar(x+0.1,beta_onestep,beta_onestep_error,'bo','MarkerSize',14,'MarkerFaceColor',color_def,'Color',color_def,LineWidth=2);
 title({'Burst size', '\beta (virions/cell)'});
 ylim([1 600]);
-set(gca,'FontSize',18);
+set(gca,'FontName','Times','FontSize',18);
 xticks(1:8)
 xticklabels([1,2,3,5,6,7,8,9]);
 yticks(0:100:600);
@@ -480,7 +480,7 @@ hold on;
 errorbar(x+0.1,tau_onestep,tau_onestep_error,'bo','MarkerSize',14,'MarkerFaceColor',color_def,'Color',color_def,LineWidth=2);
 title({'Latent period',' \tau (hr)'});
 ylim([0.2 3]);
-set(gca,'FontSize',18);
+set(gca,'FontName','Times','FontSize',18);
 xticks(1:8);
 xticklabels([1,2,3,5,6,7,8,9]);
 xlim([0 9]);
@@ -492,7 +492,7 @@ hold on;
 errorbar([1 2 3 5 6 7 8 9]+0.1,phi_onestep,phi_onestep_error,'bo','MarkerSize',14,'MarkerFaceColor',color_def,'Color',color_def,LineWidth=2);
 title({'Adsorption rate','\phi (ml/hr)'})
 ylim([1e-10 2.5e-7]);
-set(gca,'FontSize',18);
+set(gca,'FontName','Times','FontSize',18);
 xticks(1:9)
 xticklabels([1,2,3,4,5,6,7,8,9]);
 xlim([0 10]);
@@ -508,7 +508,7 @@ cv_onestep_error = 0.5* (boxes_onestep).^(-1.5).*boxes_onestep_error;
 subplot(1,5,3)
 errorbar(x,cv_mean_onestep,cv_onestep_error,'ko','MarkerSize',14,'MarkerFaceColor',color_def,'Color',color_def,LineWidth=2);
 title({'Coefficient of',' variation of \tau (CV)'});
-set(gca,'FontSize',18);
+set(gca,'FontName','Times','FontSize',18);
 xticks(1:8);
 xticklabels([1,2,3,5,6,7,8,9]);
 ylim([0 0.35])
@@ -523,7 +523,7 @@ errorbar([1:5]+0.1, r_onestep, r_onestep_error,'bo','MarkerSize',14,'MarkerFaceC
 
 title({'Growth rate','r (cells/hr)'});
 ylim([0.1 0.35]);
-set(gca,'FontSize',18);
+set(gca,'FontName','Times','FontSize',18);
 xlim([0.5 5.5])
 xticks(1:5);
 xticklabels({'CBA 4','CBA 18','CBA 38','PSA H100','PSA 13-15'});

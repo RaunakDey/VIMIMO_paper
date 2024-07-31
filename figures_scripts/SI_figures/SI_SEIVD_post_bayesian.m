@@ -51,7 +51,7 @@ hold on;
 smoothHistogram(chain(transient_id:end,i),6,'b');
 %smoothHistogram(chain2(transient_id:end,i),6,'r');
 
-xlabel('\phi (ml/hr/cell)');
+xlabel('log(\phi) (ml/hr/cell)');
 ylabel('PDF');
 xlim([min(chain(transient_id:end,i))-1 max(chain(transient_id:end,i))+1 ]);
 set(gca,'FontSize',20);
@@ -112,7 +112,7 @@ hold on;
 smoothHistogram(chain(transient_id:end,i),6,'b');
 %smoothHistogram(chain2(transient_id:end,i),6,'r');
 
-xlabel('Dc');
+xlabel('log(Dc) (dead cells/ml)');
 ylabel('PDF');
 xlim([min(chain(transient_id:end,i)) max(chain(transient_id:end,i)) ]);
 set(gca,'FontSize',20);
@@ -471,7 +471,8 @@ R_2 =  ( (N-1)/N * W + (B/N) ) ./W;
 
 R =  min(R_1,R_2);
 
-
+figure(100)
+subplot(1,2,1)
 b = bar(R_2,'FaceColor','flat');
 
 for i = 1:9
@@ -521,6 +522,8 @@ geweke2 = chainstats2(:,5);
 
 geweke_stats = max(geweke1,geweke2);
 
+figure(100)
+subplot(1,2,2)
 b = bar(geweke_stats,'FaceColor','flat');
 
 for i = 1:9

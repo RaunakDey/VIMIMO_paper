@@ -261,7 +261,7 @@ han=axes(hf,'visible','off');
 han.Title.Visible='on';
 han.XLabel.Visible='on';
 han.YLabel.Visible='on';
-set(gca,'FontSize',20);
+set(gca,'FontSize',20,'FontName','Times');
 set(gca,'fontname','times')  % Set it to times
 xlabel("Time (hours)");
 

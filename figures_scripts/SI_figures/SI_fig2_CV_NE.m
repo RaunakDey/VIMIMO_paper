@@ -17,7 +17,7 @@ pdf = ((rate^shape) * (x.^(shape -1)) .* exp(-rate*x)/gamma(shape));
 i=i+1;
 ha(i) = subplot(length(NE),2,2*i-1)
 plot(x,pdf,'LineStyle','-','LineWidth',2);hold on;yticks([]);
-set(gca,'FontSize',20)
+set(gca,'FontSize',20,'FontName','Times');
 
 line([mean_tau, mean_tau], [0, max(pdf)], 'Color', [0.1,0.1,0.1],'LineStyle','--',LineWidth=2);
 

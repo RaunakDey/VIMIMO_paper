@@ -7,7 +7,7 @@ x=1:9;
 
 
 %load('./v14-4.mat');
-load('./v23.mat');
+load('./../community/results/v23.mat');
 
 % change the log transformed part of the chain to original
 chain(:,10:18) = exp(2.303.*chain(:,10:18));
@@ -34,7 +34,7 @@ start_new_2 = 1;
 
 
 
-load('./../seiv/short_time/cba_seiv.mat');
+load('./../community/results/cba_seiv.mat');
 chain_final(:,6:10) = exp(2.303.*chain_final(:,6:10));
 
 beta_seiv = median(chain_final(3000:end,1:5));
@@ -49,7 +49,7 @@ error_tau_seiv = std(chain_final(3000:end,11:15)) ;
 error_r_seiv = std(chain_final(3000:end,16:18)) ;
 
 
-load('./../seiv/short_time/psa_seiv.mat');
+load('./../community/results/psa_seiv.mat');
 chain_final(:,5:8) = exp(2.303.*chain_final(:,5:8));
 
 beta_seiv(6:9) = median(chain_final(2000:end,1:4));
@@ -145,7 +145,7 @@ errorbar(x+gap,beta_onestep,beta_onestep_error,'o','MarkerSize',market_size_give
 errorbar(x,beta_seiv,error_phi_seiv,'MarkerSize',market_size_given,'MarkerFaceColor','k','MarkerEdgeColor','k','Marker','square','LineWidth',2, ...
      'LineStyle','none',"Color",'k')
 
-set(gca,'FontSize',20);
+set(gca,'FontSize',20,'FontName','times');
 xticks(1:9);
 ylabel({'Burst sizes' ;'\beta (virions/cell)'});
 ylim([0 1000]);
@@ -161,10 +161,11 @@ hold on;
 errorbar(x+gap,tau_onestep,tau_onestep_error,'o','MarkerSize',market_size_given,'MarkerFaceColor',color_green,'Color',color_green,'LineWidth',2);
 errorbar(x,tau_seiv,error_tau_seiv,'MarkerSize',market_size_given,'MarkerFaceColor','k','MarkerEdgeColor','k','Marker','square','LineWidth',2, ...
      'LineStyle','none',"Color",'k')
-set(gca,'FontSize',20);
+set(gca,'FontSize',20, 'FontName','times');
 xticks(1:9);
 ylabel({'Latent periods'; ' \tau (hr)'});
-ylim([0.2 20]);
+yticks([2 4 6 8 10]);
+ylim([0.2 10]);
 xline(5.5,'--k',LineWidth=2.5);
 
 
@@ -178,10 +179,10 @@ errorbar(x,phi_seiv,error_phi_seiv,'MarkerSize',market_size_given,'MarkerFaceCol
      'LineStyle','none',"Color",'k')
 
 
-set(gca,'FontSize',20);
+set(gca,'FontSize',20,'FontName','times');
 xticks(1:9);
 set(gca, 'YScale', 'log');
-ylabel('\phi (ml/hr)');
+ylabel({'Adsorption rates';'\phi (ml/hr)'});
 %yticks([1e-10 1e-9 1e-8 1e-7]);
 xline(5.5,'--k',LineWidth=2.5);
 %ylim([1e-10 10e-7]);
@@ -199,7 +200,7 @@ errorbar(1:5,r_seiv,error_r_seiv,'MarkerSize',market_size_given,'MarkerFaceColor
     'LineStyle','none',"Color",'k')
 
 
-set(gca,'FontSize',20);
+set(gca,'FontSize',20,'FontName','times');
 xticks(1:5);
 xticklabels({'CBA 4','CBA 18','CBA 38','PSA H100','PSA 13-15'});
 set(gca,'XTickLabelRotation',90)
