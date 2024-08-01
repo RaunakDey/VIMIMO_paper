@@ -19,7 +19,11 @@ You will need MATLAB 2022b and higher to run this code. You need to install the 
 git clone git@github.com:mjlaine/mcmcstat.git
 addpath(genpath(./mcmcstat))
 ```
-The data files and the mcmc chains come with the directory for the onesteps. For the community analysis you need to download the datafiles and put it in the proper directory. The results folder should be placed inside 
+The data files and the mcmc chains come with the directory for the onesteps. For the community analysis you need to download the datafiles and put it in the proper directory. Here is the dropbox link to the mcmc runs.
+```
+https://www.dropbox.com/scl/fo/4cz9d1p612c4xxcwpkgte/AOZGC39zPues-X20u1EPZac?rlkey=bzgxrd34yshxw5qgdgwyog39n&st=bwwbjjpr&dl=0
+```
+The results folder should be placed inside 
 ```
 ./community/
 ```
@@ -30,5 +34,8 @@ We invite all reviewers to explore our models. However here is a suggested outli
 - The onesteps are modeled using SEIV model, the ODE for that can be found in SI-1.1 in the paper and the code can be found with the [ODE models](./one-step-experiments/simulator/one_step_eqn_before_dilution.m) and [simulation function](./one-step-experiments/simulator/one_step_eqn_before_dilution.m) one_step_simulate_particular_points.m takes care of the the dilution.
 - For the Bayesian analysis of each of the interactions we can look at the script_inverse_interactionsi.m files where $i=1,2,\dots,8$ for the 8 onestep growth curves. The one-step data is saved in [data_2024](./one-step-experiments/data_2024/) and the mcmc run results are stored in [result_replicates](./one-step-experiments/result_replicates/).
 - For the community experiments, the data is stored [here](./community/data/) and the mcmcruns are being downloaded.
-- We invite the reviewers to check the SEIV and SEIVD models in SI-1.3 and SI-1.4 respectively in the paper. The code for the same can be found in 
+- We invite the reviewers to check the SEIV and SEIVD models in SI-1.3 and SI-1.4 respectively in the paper. The code for the same can be found here for [SEIVD](./community/src/models/SEIVD_diff_NE_diff_debris_abs.m) and [SEIV](./community/src/models/legacy/SEIV_diff_NE.m)
+- For just a forward run of the SEIVD model that fits the data with the best-fit parameters (non-Bayesian), you can run this [script](./community/median_SEIVD_model.m)
+- The figures found in the paper can be generated using the scripts found in the directory [here](./figures_scripts/)
 
+Thank you. 
