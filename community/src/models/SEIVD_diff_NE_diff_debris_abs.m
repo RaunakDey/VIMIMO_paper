@@ -1,12 +1,22 @@
+%%% This subsclass contains the SEIVD model used in the paper. The default
+%%% properties are preset in the ode_fun class. This model has been used in
+%%% both forward simulation and Bayesian Inference.
+
+%%% Authors: Raunak Dey, Ashley Coenen,
+%%% (c) Weitz Group, University of Maryland, Georgia Tech, USA.
+
+
 classdef SEIVD_diff_NE_diff_debris_abs < ode_funs
     
+% please find the functions in ode_fun.m
+
     properties
         name;
         statevars = ["S","E","I","V"];
-        NH;
-        NV;
+        NH; %5
+        NV; %5
         NE;
-        id;
+        id; % tracks observed and latent variables of the model
     end
     
     methods
@@ -31,12 +41,14 @@ classdef SEIVD_diff_NE_diff_debris_abs < ode_funs
             vec = zeros(obj.id.D,1);
         end
         
+        % sum of susceptible, exposed and infected host cells.
         function S = sum_hosts(obj,y) % all host cells including infected
             S = y(:,obj.id.S);
             for i = 1:obj.NH % could use bsxfun or arrayfun here?
                S(:,i) = S(:,i) + sum(y(:,obj.id.Emat(i,:)),2) + sum(y(:,obj.id.Imat(i,:)),2); 
             end
         end
+        
         
         function V = sum_viruses(obj,y) % free phage only
            V = y(:,obj.id.V); 

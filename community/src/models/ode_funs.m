@@ -1,3 +1,11 @@
+%%% The ode_fun class contains a list of all the functions to create
+%%% differential equations for this project. The default values are defined
+%%% and not all the features are used to construct the model.
+
+%%% Authors: Raunak Dey, Ashley Coenen,
+%%% (c) Weitz Group, University of Maryland, Georgia Tech, USA.
+
+
 classdef ode_funs
     % every model is a subclass of ode_funs
     
@@ -14,13 +22,13 @@ classdef ode_funs
         viral_adsorb = 0; % 0 = viruses only adsorb to their hosts; 1 = viruses may adsorb to any host
         lysis_reset = 0; % 0 = no lysis reset; 1 = adsorption by new virsues resets lytic cycle from I to first E class
         debris_inhib = 0; % 0 = no debris inhibition; 1 = build-up of dead cells inhibits infection (requires defining pars.Dc)
-        debris_inhib2 = 0;
-        debris_inhib3 = 0;
-        debris_inhib4 = 0;
-        debris_inhib5 = 0;
+        debris_inhib2 = 0;  % 0 = no debris inhibition; 1 = build-up of dead cells inhibits infection (requires defining pars.Dc2)
+        debris_inhib3 = 0; % 0 = no debris inhibition; 1 = build-up of dead cells inhibits infection (requires defining pars.Dc3)
+        debris_inhib4 = 0; % 0 = no debris inhibition; 1 = build-up of dead cells inhibits infection (requires defining pars.Dc4)
+        debris_inhib5 = 0; % 0 = no debris inhibition; 1 = build-up of dead cells inhibits infection (requires defining pars.Dc5)
 
-        diff_beta = 0;
-        %NH = 5; %% have to remove later -- this is default value
+        diff_beta = 0; % Bydefault it it turned off -- we have kept beta constannt through out the simulation.
+        
     end
     
     methods
@@ -30,6 +38,7 @@ classdef ode_funs
             mystr = sprintf('%d%d%d%d%d',obj.host_growth,obj.viral_decay,obj.viral_adsorb,obj.lysis_reset,obj.debris_inhib);
         end
         
+        % please note diff_beta = 0 (fixed) for this paper
         function handle = viral_growth(obj)
             if obj.diff_beta == 0
                 handle = @(pars,t, Imat, OH, etaeff)  (pars.beta.*etaeff.*Imat)'* OH;
@@ -59,6 +68,8 @@ classdef ode_funs
             end
         end
         
+
+        % please note viral decay is turned off for this paper.
         function handle = viral_decay_fun(obj)
             % output = component of dV (NV x 1)
             % also compatible with W state variable, then output = component of dW (NV x 1)
@@ -68,7 +79,10 @@ classdef ode_funs
                 handle = @(pars,V) pars.m.*V;
             end
         end
-         
+        
+
+        % please note viral adsoption is species specific (viral_adsorb=0)
+        % for this paper.
         function handle = viral_adsorb_fun(obj)
             % output = adsorption matrix (NH x NV)
             % viral_adsorb_fun is only used in dV equation; assuming adsorption by non-specific viruses have no affect on hosts
@@ -79,6 +93,7 @@ classdef ode_funs
             end
         end       
 
+        % please note lysis reset has been turned off for this paper.
         function handle = lysis_reset_fun(obj)
             % output = component of dImat (to be subtracted) and dEmat (to be added) (NH x NV)
             if obj.lysis_reset==0
@@ -89,6 +104,8 @@ classdef ode_funs
             end
         end
         
+        % please note pars.prob = 0 (hard fixed) so this feauture has not
+        % been used in the paper.
         function handle = viral_debris_interaction(obj)
             if obj.debris_inhib == 2
                 handle = @(pars,V,D) (pars.prob.*(pars.phi*V))*D; 
