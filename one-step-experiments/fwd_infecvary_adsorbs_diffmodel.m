@@ -31,14 +31,14 @@ NE_optimal = round(theta_optimized(5));
 clear y0
 y0(1) = mean(S0_replicates);
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates)*prob_effective_infection;
-y0(NE_optimal+4) = mean(V0_replicates)*(1-prob_effective_infection);
+y0(NE_optimal+3) = mean(V0_replicates);
+
 
 dilution_factor = 100;
 
 
 tvec = 0:0.01:15.75;
-[time_opt,y_series_opt] = one_step_simulate_infec_vary_samemodel(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
+[time_opt,y_series_opt] = one_step_simulate_infec_vary_adsorbs_diffmodel(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
 
 
 total_virus = y_series_opt(end,:)+y_series_opt(end-1,:);
