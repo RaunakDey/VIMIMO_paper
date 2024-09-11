@@ -1,4 +1,4 @@
-function [time,y,time_abs,pre_dil] = one_step_simulate_infec_vary_adsorbs_diffmodel(t,y0,theta,NE,dilution_factor)
+function [time,y,time_abs,pre_dil] = one_step_simulate_infec_vary_infec_diffmodel(t,y0,theta,NE,dilution_factor)
 
 opts=odeset('AbsTol',1E-8,'RelTol',1E-8,'NonNegative',1,'MaxStep',0.25);
 
@@ -15,10 +15,9 @@ time_abs = solved.x;
 y_ini = solved.y(:,end)/dilution_factor;
 y_ini(end+1) = 0; % all viruses are infectitious at first.
 
-%time = 0:(t(2)-t(1))*0.01:t(end);
-time = t;
+time = 0:(t(2)-t(1))*0.01:t(end);
 %solved2 = ode45(@(t,y) one_step_eqn_after_dilution_infectionvary(t,y,theta,NE), time',y_ini);
-solved2 = ode45(@(t,y) one_step_eqn_after_dilution_adsorbvary(t,y,theta,NE), time',y_ini);
+solved2 = ode45(@(t,y) one_step_eqn_after_dilution_infectionvary_absorbs(t,y,theta,NE), time',y_ini);
 
 y=solved2.y;
 time=solved2.x;
