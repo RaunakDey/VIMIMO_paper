@@ -34,25 +34,25 @@ data.ydata{1} = free_phages;
 
 %% plot optimal
 
-% NE_optimal = round(theta_optimized(5));
-% clear y0
-% y0(1) = mean(S0_replicates);
-% y0(2:NE_optimal+2) = 0;
-% y0(NE_optimal+3) = mean(V0_replicates);
-% 
-% dilution_factor = 100;
-% 
-% tvec = 0:0.01:3.5;
-% [time_opt,y_series_opt] = one_step_simulate(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
-% 
-% figure(10)
-% plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
-% set(gca,'YScale','log');
-% for i = 1:num_replicates
-%     for j = 1:3
-%     plot(data.xdata{i}./60,data.ydata{i}(:,j),'bo'); hold on;
-%     end
-% end
+NE_optimal = round(theta_optimized(5));
+clear y0
+y0(1) = mean(S0_replicates);
+y0(2:NE_optimal+2) = 0;
+y0(NE_optimal+3) = mean(V0_replicates);
+
+dilution_factor = 100;
+
+tvec = 0:0.01:3.5;
+[time_opt,y_series_opt] = one_step_simulate(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
+
+figure(10)
+plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
+set(gca,'YScale','log');
+for i = 1:num_replicates
+    for j = 1:3
+    plot(data.xdata{i}./60,data.ydata{i}(:,j),'bo'); hold on;
+    end
+end
 
 %% inference mcmc
 

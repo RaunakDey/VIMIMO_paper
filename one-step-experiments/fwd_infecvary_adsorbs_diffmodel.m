@@ -19,7 +19,7 @@ phi_optimal = 2.18e-8;
 tau_optimal = 1.85;
 beta_optimal = 94.2;
 NE_optimal = 135;
-prob_effective_infection = 0.1;
+prob_effective_infection = 0.5;
 prob_lysis_reset = 0e-7;
 
 
@@ -37,7 +37,7 @@ y0(NE_optimal+3) = mean(V0_replicates);
 dilution_factor = 100;
 
 
-tvec = 0:0.01:15.75;
+tvec = 0:0.1:50;
 [time_opt,y_series_opt] = one_step_simulate_infec_vary_adsorbs_diffmodel(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
 
 
@@ -56,7 +56,7 @@ for i = 1:num_replicates
     plot(data.xdata{i}./60,data.ydata{i}(:,j),'bo'); hold on;
     end
 end
-xlim([0 15.75]);
+xlim([0 tvec(end)]);
 
 ylim([1e3 1e9]);
 yticks([1e3 1e5 1e7 1e9])
@@ -71,7 +71,7 @@ xlabel('Time (hr)');
 ylabel('Host density (/ml)');
 set(gca,'FontSize',20);
 title('CBA18-2 on CBA 18');
-xlim([0 15.75]);
+xlim([0 tvec(end)]);
 ylim([1e-1 1e7]);
 yticks([1e-1, 1e1, 1e3, 1e5, 1e7]);
 
