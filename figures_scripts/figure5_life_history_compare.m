@@ -142,8 +142,8 @@ subplot(2,2,1)
 errorbar(x-gap,beta,error_beta_seivd,'ro','MarkerSize',market_size_given,'MarkerFaceColor','auto','Marker','diamond','LineWidth',2);
 hold on;
 errorbar(x+gap,beta_onestep,beta_onestep_error,'o','MarkerSize',market_size_given,'MarkerFaceColor',color_green,'Color',color_green,'LineWidth',2);
-errorbar(x,beta_seiv,error_phi_seiv,'MarkerSize',market_size_given,'MarkerFaceColor','k','MarkerEdgeColor','k','Marker','square','LineWidth',2, ...
-     'LineStyle','none',"Color",'k')
+%errorbar(x,beta_seiv,error_phi_seiv,'MarkerSize',market_size_given,'MarkerFaceColor','k','MarkerEdgeColor','k','Marker','square','LineWidth',2, ...
+%     'LineStyle','none',"Color",'k')
 
 set(gca,'FontSize',20,'FontName','times');
 xticks(1:9);
@@ -159,8 +159,8 @@ subplot(2,2,2)
 errorbar(x-gap,tau,error_tau_seivd,'ro','MarkerSize',market_size_given,'MarkerFaceColor','auto','Marker','diamond','LineWidth',2);
 hold on;
 errorbar(x+gap,tau_onestep,tau_onestep_error,'o','MarkerSize',market_size_given,'MarkerFaceColor',color_green,'Color',color_green,'LineWidth',2);
-errorbar(x,tau_seiv,error_tau_seiv,'MarkerSize',market_size_given,'MarkerFaceColor','k','MarkerEdgeColor','k','Marker','square','LineWidth',2, ...
-     'LineStyle','none',"Color",'k')
+%errorbar(x,tau_seiv,error_tau_seiv,'MarkerSize',market_size_given,'MarkerFaceColor','k','MarkerEdgeColor','k','Marker','square','LineWidth',2, ...
+%     'LineStyle','none',"Color",'k')
 set(gca,'FontSize',20, 'FontName','times');
 xticks(1:9);
 ylabel({'Latent periods'; ' \tau (hr)'});
@@ -175,8 +175,8 @@ subplot(2,2,3)
 errorbar(x-gap,phi,error_phi_seivd,'ro','MarkerSize',market_size_given,'MarkerFaceColor','auto','Marker','diamond','LineWidth',2);
 hold on;
 errorbar(x+gap,phi_onestep, phi_onestep_error,'o','MarkerSize',market_size_given,'MarkerFaceColor',color_green,'Color',color_green,'LineWidth',2);
-errorbar(x,phi_seiv,error_phi_seiv,'MarkerSize',market_size_given,'MarkerFaceColor','k','MarkerEdgeColor','k','Marker','square','LineWidth',2, ...
-     'LineStyle','none',"Color",'k')
+%errorbar(x,phi_seiv,error_phi_seiv,'MarkerSize',market_size_given,'MarkerFaceColor','k','MarkerEdgeColor','k','Marker','square','LineWidth',2, ...
+%     'LineStyle','none',"Color",'k')
 
 
 set(gca,'FontSize',20,'FontName','times');
@@ -196,8 +196,8 @@ errorbar((1:5)-gap ,r,error_r_seivd,'ro','MarkerSize',market_size_given,'MarkerF
 hold on;
 %errorbar((1:5)+gap,r_onestep,r_onestep_error,'^','MarkerSize',market_size_given,'MarkerFaceColor', [0.9290 0.6940 0.1250],'Color', [0.9290 0.6940 0.1250],'LineWidth',2);
 errorbar((1:5)+gap,r_onestep,r_onestep_error,'o','MarkerSize',market_size_given,'MarkerFaceColor',color_green,'Color',color_green,'LineWidth',2);
-errorbar(1:5,r_seiv,error_r_seiv,'MarkerSize',market_size_given,'MarkerFaceColor','k','MarkerEdgeColor','k','Marker','square','LineWidth',2, ...
-    'LineStyle','none',"Color",'k')
+%errorbar(1:5,r_seiv,error_r_seiv,'MarkerSize',market_size_given,'MarkerFaceColor','k','MarkerEdgeColor','k','Marker','square','LineWidth',2, ...
+%   'LineStyle','none',"Color",'k')
 
 
 set(gca,'FontSize',20,'FontName','times');

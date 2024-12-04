@@ -1,13 +1,27 @@
 
 load('./../community/results/cba_seiv_2.mat');
 
-color_ofthe_fit = [0.5 0.5 0.5];
+color_ofthe_fit = [0.8 0.8 0.8];
 tvec = 0:0.1:15.75;
 
-figure(2)
 
+red1 = [255,186,186]/255;
+red2 = [255,123,123]/255;
+red3 = [255,82,82]/255;
+red4 = [255,0,0]/255;
+red5 = [167,0,0]/255;
+
+
+blue1 = [179,205,224]/255;
+blue2 = [100,151,177]/255;
+blue3 = [0,91,150]/255;
+blue4 = [3,10,208]/255;
+blue5 = [0,0,75]/255;
+
+figure(2)
+%%
 subplot(2,5,1)
-errorbar(time/60,mean(1e3*host1'),std(1e3*host1'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255], Color=[70/255,130/255,180/255]);hold on;
+errorbar(time/60,mean(1e3*host1'),std(1e3*host1'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',blue1, Color=blue1);hold on;
 set(gca, 'YScale', 'log');set(gca,'FontSize',20)
 set(gca,'fontname','times')  % Set it to times
 ylim([1e5 1e8]);
@@ -20,7 +34,7 @@ ylim([1e5 1e8]);
   
 
 subplot(2,5,2)
-errorbar(time/60,mean(1e3*host2'),std(1e3*host2'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255], Color=[70/255,130/255,180/255]);hold on;
+errorbar(time/60,mean(1e3*host2'),std(1e3*host2'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',blue2, Color=blue2);hold on;
 set(gca, 'YScale', 'log');set(gca,'FontSize',20);
 set(gca,'fontname','times')  % Set it to times
 ylim([1e5 1e8]);
@@ -33,7 +47,7 @@ ylim([1e5 1e8]);
 
 
 subplot(2,5,3)
-errorbar(time/60,mean(1e3*host3'),std(1e3*host3'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255], Color=[70/255,130/255,180/255]);hold on;
+errorbar(time/60,mean(1e3*host3'),std(1e3*host3'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',blue3, Color=blue3);hold on;
 set(gca, 'YScale', 'log');set(gca,'FontSize',20);
 set(gca,'fontname','times')  % Set it to times
 ylim([1e5 1e8]);
@@ -47,7 +61,7 @@ ylim([1e5 1e8]);
   
 
 subplot(2,5,6)
-errorbar(time/60,mean(1e3*virus1'),std(1e3*virus1'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255], Color=[70/255,130/255,180/255]);hold on;
+errorbar(time/60,mean(1e3*virus1'),std(1e3*virus1'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',red1, Color=red1);hold on;
 set(gca, 'YScale', 'log');set(gca,'fontname','times')  % Set it to times
 ylim([1e4 1e11]);
     xlim([0 16]);
@@ -60,7 +74,7 @@ ylim([1e4 1e11]);
 
 
 subplot(2,5,7)
-errorbar(time/60,mean(1e3*virus2'),std(1e3*virus2'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255], Color=[70/255,130/255,180/255]);hold on;
+errorbar(time/60,mean(1e3*virus2'),std(1e3*virus2'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',red2, Color=red2);hold on;
 set(gca, 'YScale', 'log');set(gca,'fontname','times')  % Set it to times
 ylim([1e4 1e11]);
     xlim([0 16]);
@@ -72,7 +86,7 @@ ylim([1e4 1e11]);
     
 
 subplot(2,5,8)
-errorbar(time/60,mean(1e3*virus3'),std(1e3*virus3'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255], Color=[70/255,130/255,180/255]);hold on;
+errorbar(time/60,mean(1e3*virus3'),std(1e3*virus3'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',red3, Color=red3);hold on;
 set(gca, 'YScale', 'log');set(gca,'fontname','times')  % Set it to times
 ylim([1e4 1e11]);
     xlim([0 16]);
@@ -82,7 +96,7 @@ ylim([1e4 1e11]);
   yticks([1e4 1e6 1e8 1e10]);
   title('\phi38:1','FontSize',18);
 
-
+%%
 
 transparency = 0.05;
 linewidth = 6;
@@ -130,9 +144,9 @@ load("./../community/results/psa_seiv_2.mat");
 tvec = 0:0.1:15.75;
 color_ofthe_fit = [0.5 0.5 0.5];
 linewidth = 6;
-
+%%
 subplot(2,5,4)
-errorbar(time/60,mean(1e3*host4'),std(1e3*host4'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255],Color = [70/255,130/255,180/255]);hold on;
+errorbar(time/60,mean(1e3*host4'),std(1e3*host4'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',blue4,Color = blue4);hold on;
 set(gca, 'YScale', 'log');set(gca,'FontSize',20)
 set(gca,'fontname','times')  % Set it to times
 ylim([1e5 1e8]);
@@ -145,7 +159,7 @@ ylim([1e5 1e8]);
   
 
 subplot(2,5,5)
-errorbar(time/60,mean(1e3*host5'),std(1e3*host5'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255],Color = [70/255,130/255,180/255]);hold on;
+errorbar(time/60,mean(1e3*host5'),std(1e3*host5'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',blue5,Color = blue5);hold on;
 set(gca, 'YScale', 'log');set(gca,'FontSize',20);
 set(gca,'fontname','times')  % Set it to times
 ylim([1e5 1e8]);
@@ -158,7 +172,7 @@ ylim([1e5 1e8]);
   
 
 subplot(2,5,9)
-errorbar(time/60,mean(1e3*virus4'),std(1e3*virus4'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255],Color = [70/255,130/255,180/255]);hold on;
+errorbar(time/60,mean(1e3*virus4'),std(1e3*virus4'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',red4,Color = red4);hold on;
 set(gca, 'YScale', 'log');set(gca,'fontname','times')  % Set it to times
 ylim([1e4 1e11]);
     xlim([0 16]);
@@ -171,7 +185,7 @@ ylim([1e4 1e11]);
 
 
 subplot(2,5,10)
-errorbar(time/60,mean(1e3*virus5'),std(1e3*virus5'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255],Color = [70/255,130/255,180/255]);hold on;
+errorbar(time/60,mean(1e3*virus5'),std(1e3*virus5'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',red5,Color = red5);hold on;
 set(gca, 'YScale', 'log');set(gca,'fontname','times')  % Set it to times
 ylim([1e4 1e11]);
     xlim([0 16]);
@@ -181,7 +195,7 @@ ylim([1e4 1e11]);
   yticks([1e4 1e6 1e8 1e10]);
   title('PSA HS6','FontSize',18);
     
-
+%%
 transparency = 0.05;
 
 tvec = 0:0.1:15.75;

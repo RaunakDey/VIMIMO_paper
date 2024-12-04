@@ -166,7 +166,7 @@ ylim([1e4 1e11]);
   % you can run for all traces and find the quantile at which that
   % "Half-Gaussian" is cutoff (half-gaussian is an approximation).
 
-  cutoff = 200;
+  cutoff = 150;
    
 
 count=1;
@@ -179,46 +179,73 @@ for i = 30000:100:50000
     error_store(count) = loglikefun(chain(i,:),data,pars2,mcmcpars,model,0);
     count=count+1;
 
-    [ss, err_vec,~,~,~] = loglikefun(chain(i,:),data,pars2,mcmcpars,model,0);
-if loglikefun(chain(i,:),data,pars2,mcmcpars,model,0) < cutoff
+    [~, err_vec,~,~,~] = loglikefun(chain(i,:),data,pars2,mcmcpars,model,0);
+
 
  pars_samples = update_pars(pars2,chain(i,:),mcmcpars);
  pars_samples.beta2 = pars_samples.beta;
 
 [t3,S3,V3,~] = simulate_ode(model,pars_samples,tvec,pars2.S0,pars2.V0);
+
     figure(1)
-    subplot(2,5,6)
-    patchline(t3,V3(:,1),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
-  
-    subplot(2,5,7)
-    patchline(t3,V3(:,2),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
 
-    subplot(2,5,8)
-    patchline(t3,V3(:,3),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
+    % subplot(2,5,6)
+    % if err_vec(7) < cutoff/10
+    % patchline(t3,V3(:,1),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
+    % end
+    % 
+    % if err_vec(8) < cutoff/10
+    % subplot(2,5,7)
+    % patchline(t3,V3(:,2),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
+    % end
+    % 
+    % 
+    % if err_vec(9) < cutoff/10
+    % subplot(2,5,8)
+    % patchline(t3,V3(:,3),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
+    % end
+    % 
+    % if err_vec(10) < cutoff/10
+    % subplot(2,5,9)
+    % patchline(t3,V3(:,4),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
+    % end
+    % 
+    % 
+    % if err_vec(11) < cutoff/10
+    % subplot(2,5,10)
+    % patchline(t3,V3(:,5),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
+    % end
+    % 
 
-    subplot(2,5,9)
-    patchline(t3,V3(:,4),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
-
-    subplot(2,5,10)
-    patchline(t3,V3(:,5),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
-
-    
+    if err_vec(2) < 10
     subplot(2,5,1)
     patchline(t3,S3(:,1),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
+    end
 
+
+    if err_vec(3) < 10
     subplot(2,5,2)
     patchline(t3,S3(:,2),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
-    
+    end
+
+
+    if err_vec(4) < 10
     subplot(2,5,3)
     patchline(t3,S3(:,3),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
-    
+    end
+
+
+    if err_vec(5) < 5
     subplot(2,5,4)
     patchline(t3,S3(:,4),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
-    
+    end
+
+
+    if err_vec(6) < 5 
     subplot(2,5,5)
     patchline(t3,S3(:,5),'edgecolor',color_of_the_fit,'linewidth',5,'edgealpha',transparency);hold on;
+    end
 
-end
 
 end
 

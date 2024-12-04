@@ -40,11 +40,11 @@ tiledlayout(2,1,"TileSpacing","none");
 
 % Tile 1
 nexttile
-errorbar(time, mean(host1'), std(host1'),Marker="o",MarkerFaceColor =red1,MarkerSize=10,Color=red1,LineStyle="-",LineWidth=2); hold on;
-errorbar(time, mean(host2'), std(host2'),Marker="o",MarkerFaceColor =red2,MarkerSize=10,Color=red2,LineStyle="-",LineWidth=2); 
-errorbar(time, mean(host3'), std(host3'),Marker="o",MarkerFaceColor =red3,MarkerSize=10,Color=red3,LineStyle="-",LineWidth=2); 
-errorbar(time, mean(host4'), std(host4'),Marker="o",MarkerFaceColor =red4,MarkerSize=10,Color=red4,LineStyle="-",LineWidth=2); 
-errorbar(time, mean(host5'), std(host5'),Marker="o",MarkerFaceColor =red5,MarkerSize=10,Color=red5,LineStyle="-",LineWidth=2); 
+errorbar(time, mean(host1'), std(host1'),Marker="o",MarkerFaceColor =blue1,MarkerSize=10,Color=blue1,LineStyle="-",LineWidth=2); hold on;
+errorbar(time, mean(host2'), std(host2'),Marker="o",MarkerFaceColor =blue2,MarkerSize=10,Color=blue2,LineStyle="-",LineWidth=2); 
+errorbar(time, mean(host3'), std(host3'),Marker="o",MarkerFaceColor =blue3,MarkerSize=10,Color=blue3,LineStyle="-",LineWidth=2); 
+errorbar(time, mean(host4'), std(host4'),Marker="o",MarkerFaceColor =blue4,MarkerSize=10,Color=blue4,LineStyle="-",LineWidth=2); 
+errorbar(time, mean(host5'), std(host5'),Marker="o",MarkerFaceColor =blue5,MarkerSize=10,Color=blue5,LineStyle="-",LineWidth=2); 
 
 hold on;
 set(gca,'FontName','Times');
@@ -59,11 +59,11 @@ legend('CBA4','CBA18', 'CBA38','PSA H100','PSA 13-15')
 
 % Tile 2
 nexttile
-errorbar(time, mean(virus1'), std(virus1'),Marker="o",MarkerFaceColor =blue1, MarkerSize=10, Color=blue1,LineStyle="-",LineWidth=2); hold on;
-errorbar(time, mean(virus2'), std(virus2'),Marker="o",MarkerFaceColor =blue2, MarkerSize=10, Color=blue2,LineStyle="-",LineWidth=2); 
-errorbar(time, mean(virus3'), std(virus3'),Marker="o",MarkerFaceColor =blue3, MarkerSize=10, Color=blue3,LineStyle="-",LineWidth=2); 
-errorbar(time, mean(virus4'), std(virus4'),Marker="o",MarkerFaceColor =blue4, MarkerSize=10, Color=blue4,LineStyle="-",LineWidth=2); 
-errorbar(time, mean(virus5'), std(virus5'),Marker="o",MarkerFaceColor =blue5, MarkerSize=10, Color=blue5,LineStyle="-",LineWidth=2); 
+errorbar(time, mean(virus1'), std(virus1'),Marker="o",MarkerFaceColor =red1, MarkerSize=10, Color=red1,LineStyle="-",LineWidth=2); hold on;
+errorbar(time, mean(virus2'), std(virus2'),Marker="o",MarkerFaceColor =red2, MarkerSize=10, Color=red2,LineStyle="-",LineWidth=2); 
+errorbar(time, mean(virus3'), std(virus3'),Marker="o",MarkerFaceColor =red3, MarkerSize=10, Color=red3,LineStyle="-",LineWidth=2); 
+errorbar(time, mean(virus4'), std(virus4'),Marker="o",MarkerFaceColor =red4, MarkerSize=10, Color=red4,LineStyle="-",LineWidth=2); 
+errorbar(time, mean(virus5'), std(virus5'),Marker="o",MarkerFaceColor =red5, MarkerSize=10, Color=red5,LineStyle="-",LineWidth=2); 
 
 hold on;
 set(gca,'FontSize',30);
@@ -82,10 +82,10 @@ default_msize = 10;
 
 figure(2)
 subplot(2,5,1)
-plot(time,host1(:,1),Color=red1, MarkerEdgeColor='k',MarkerFaceColor=red1, LineStyle="none",Marker="square",MarkerSize=default_msize );
+plot(time,host1(:,1),Color=blue1, MarkerEdgeColor='k',MarkerFaceColor=blue1, LineStyle="none",Marker="square",MarkerSize=default_msize );
 hold on;
-plot(time,host1(:,2),Color=red1 ,MarkerEdgeColor='k',MarkerFaceColor=red1,LineStyle="none",Marker="^",MarkerSize=default_msize );
-plot(time,host1(:,3),Color=red1,MarkerEdgeColor='k',MarkerFaceColor=red1, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
+plot(time,host1(:,2),Color=blue1 ,MarkerEdgeColor='k',MarkerFaceColor=blue1,LineStyle="none",Marker="^",MarkerSize=default_msize );
+plot(time,host1(:,3),Color=blue1,MarkerEdgeColor='k',MarkerFaceColor=blue1, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
 set(gca,'FontSize',25);
 set(gca,'FontName','Times');
 xlabel('Time (hrs)');
@@ -101,10 +101,10 @@ xtickangle(90);
 
 
 subplot(2,5,2)
-plot(time,host2(:,1),Color=red2, MarkerEdgeColor='k',MarkerFaceColor=red2, LineStyle="none",Marker="square",MarkerSize=default_msize );
+plot(time,host2(:,1),Color=blue2, MarkerEdgeColor='k',MarkerFaceColor=blue2, LineStyle="none",Marker="square",MarkerSize=default_msize );
 hold on;
-plot(time,host2(:,2),Color=red2 ,MarkerEdgeColor='k',MarkerFaceColor=red2,LineStyle="none",Marker="^",MarkerSize=default_msize );
-plot(time,host2(:,3),Color=red2,MarkerEdgeColor='k',MarkerFaceColor=red2, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
+plot(time,host2(:,2),Color=blue2 ,MarkerEdgeColor='k',MarkerFaceColor=blue2,LineStyle="none",Marker="^",MarkerSize=default_msize );
+plot(time,host2(:,3),Color=blue2,MarkerEdgeColor='k',MarkerFaceColor=blue2, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
 set(gca,'FontSize',25);
 set(gca,'FontName','Times');
 xlabel('Time (hrs)');
@@ -119,10 +119,10 @@ xtickangle(90);
 
 
 subplot(2,5,3)
-plot(time,host3(:,1),Color=red3, MarkerEdgeColor='k',MarkerFaceColor=red3, LineStyle="none",Marker="square",MarkerSize=default_msize );
+plot(time,host3(:,1),Color=blue3, MarkerEdgeColor='k',MarkerFaceColor=blue3, LineStyle="none",Marker="square",MarkerSize=default_msize );
 hold on;
-plot(time,host3(:,2),Color=red3 ,MarkerEdgeColor='k',MarkerFaceColor=red3,LineStyle="none",Marker="^",MarkerSize=default_msize );
-plot(time,host3(:,3),Color=red3,MarkerEdgeColor='k',MarkerFaceColor=red3, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
+plot(time,host3(:,2),Color=blue3 ,MarkerEdgeColor='k',MarkerFaceColor=blue3,LineStyle="none",Marker="^",MarkerSize=default_msize );
+plot(time,host3(:,3),Color=blue3,MarkerEdgeColor='k',MarkerFaceColor=blue3, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
 set(gca,'FontSize',25);
 set(gca,'FontName','Times');
 xlabel('Time (hrs)');
@@ -137,10 +137,10 @@ xtickangle(90);
 
 
 subplot(2,5,4)
-plot(time,host4(:,1),Color=red4, MarkerEdgeColor='k',MarkerFaceColor=red4, LineStyle="none",Marker="square",MarkerSize=default_msize );
+plot(time,host4(:,1),Color=blue4, MarkerEdgeColor='k',MarkerFaceColor=blue4, LineStyle="none",Marker="square",MarkerSize=default_msize );
 hold on;
-plot(time,host4(:,2),Color=red4 ,MarkerEdgeColor='k',MarkerFaceColor=red4,LineStyle="none",Marker="^",MarkerSize=default_msize );
-plot(time,host4(:,3),Color=red4,MarkerEdgeColor='k',MarkerFaceColor=red4, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
+plot(time,host4(:,2),Color=blue4 ,MarkerEdgeColor='k',MarkerFaceColor=blue4,LineStyle="none",Marker="^",MarkerSize=default_msize );
+plot(time,host4(:,3),Color=blue4,MarkerEdgeColor='k',MarkerFaceColor=blue4, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
 set(gca,'FontSize',25);
 set(gca,'FontName','Times');
 xlabel('Time (hrs)');
@@ -155,10 +155,10 @@ xtickangle(90);
 
 
 subplot(2,5,5)
-plot(time,host5(:,1),Color=red5, MarkerEdgeColor='k',MarkerFaceColor=red5, LineStyle="none",Marker="square",MarkerSize=default_msize );
+plot(time,host5(:,1),Color=blue5, MarkerEdgeColor='k',MarkerFaceColor=blue5, LineStyle="none",Marker="square",MarkerSize=default_msize );
 hold on;
-plot(time,host5(:,2),Color=red5 ,MarkerEdgeColor='k',MarkerFaceColor=red5,LineStyle="none",Marker="^",MarkerSize=default_msize );
-plot(time,host5(:,3),Color=red5,MarkerEdgeColor='k',MarkerFaceColor=red5, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
+plot(time,host5(:,2),Color=blue5 ,MarkerEdgeColor='k',MarkerFaceColor=blue5,LineStyle="none",Marker="^",MarkerSize=default_msize );
+plot(time,host5(:,3),Color=blue5,MarkerEdgeColor='k',MarkerFaceColor=blue5, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
 set(gca,'FontSize',25);
 set(gca,'FontName','Times');
 xlabel('Time (hrs)');
@@ -174,10 +174,10 @@ xtickangle(90);
 
 
 subplot(2,5,6)
-plot(time,virus1(:,1),Color=blue1, MarkerEdgeColor='k',MarkerFaceColor=blue1, LineStyle="none",Marker="square",MarkerSize=default_msize );
+plot(time,virus1(:,1),Color=red1, MarkerEdgeColor='k',MarkerFaceColor=red1, LineStyle="none",Marker="square",MarkerSize=default_msize );
 hold on;
-plot(time,virus1(:,2),Color=blue1 ,MarkerEdgeColor='k',MarkerFaceColor=blue1,LineStyle="none",Marker="^",MarkerSize=default_msize );
-plot(time,virus1(:,3),Color=blue1,MarkerEdgeColor='k',MarkerFaceColor=blue1, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
+plot(time,virus1(:,2),Color=red1 ,MarkerEdgeColor='k',MarkerFaceColor=red1,LineStyle="none",Marker="^",MarkerSize=default_msize );
+plot(time,virus1(:,3),Color=red1,MarkerEdgeColor='k',MarkerFaceColor=red1, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
 set(gca,'FontSize',25);
 set(gca,'FontName','Times');
 xlabel('Time (hrs)');
@@ -193,10 +193,10 @@ xtickangle(90);
 
 
 subplot(2,5,7)
-plot(time,virus2(:,1),Color=blue2, MarkerEdgeColor='k',MarkerFaceColor=blue2, LineStyle="none",Marker="square",MarkerSize=default_msize );
+plot(time,virus2(:,1),Color=red2, MarkerEdgeColor='k',MarkerFaceColor=red2, LineStyle="none",Marker="square",MarkerSize=default_msize );
 hold on;
-plot(time,virus2(:,2),Color=blue2 ,MarkerEdgeColor='k',MarkerFaceColor=blue2,LineStyle="none",Marker="^",MarkerSize=default_msize );
-plot(time,virus2(:,3),Color=blue2,MarkerEdgeColor='k',MarkerFaceColor=blue2, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
+plot(time,virus2(:,2),Color=red2 ,MarkerEdgeColor='k',MarkerFaceColor=red2,LineStyle="none",Marker="^",MarkerSize=default_msize );
+plot(time,virus2(:,3),Color=red2,MarkerEdgeColor='k',MarkerFaceColor=red2, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
 set(gca,'FontSize',25);
 set(gca,'FontName','Times');
 xlabel('Time (hrs)');
@@ -210,10 +210,10 @@ xtickangle(90);
 
 
 subplot(2,5,8)
-plot(time,virus3(:,1),Color=blue3, MarkerEdgeColor='k',MarkerFaceColor=blue3, LineStyle="none",Marker="square",MarkerSize=default_msize );
+plot(time,virus3(:,1),Color=red3, MarkerEdgeColor='k',MarkerFaceColor=red3, LineStyle="none",Marker="square",MarkerSize=default_msize );
 hold on;
-plot(time,virus3(:,2),Color=blue3 ,MarkerEdgeColor='k',MarkerFaceColor=blue3,LineStyle="none",Marker="^",MarkerSize=default_msize );
-plot(time,virus3(:,3),Color=blue3,MarkerEdgeColor='k',MarkerFaceColor=blue3, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
+plot(time,virus3(:,2),Color=red3 ,MarkerEdgeColor='k',MarkerFaceColor=red3,LineStyle="none",Marker="^",MarkerSize=default_msize );
+plot(time,virus3(:,3),Color=red3,MarkerEdgeColor='k',MarkerFaceColor=red3, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
 set(gca,'FontSize',25);
 set(gca,'FontName','Times');
 xlabel('Time (hrs)');
@@ -227,10 +227,10 @@ xtickangle(90);
 
 
 subplot(2,5,9)
-plot(time,virus4(:,1),Color=blue4, MarkerEdgeColor='k',MarkerFaceColor=blue4, LineStyle="none",Marker="square",MarkerSize=default_msize );
+plot(time,virus4(:,1),Color=red4, MarkerEdgeColor='k',MarkerFaceColor=red4, LineStyle="none",Marker="square",MarkerSize=default_msize );
 hold on;
-plot(time,virus4(:,2),Color=blue4 ,MarkerEdgeColor='k',MarkerFaceColor=blue4,LineStyle="none",Marker="^",MarkerSize=default_msize );
-plot(time,virus4(:,3),Color=blue4,MarkerEdgeColor='k',MarkerFaceColor=blue4, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
+plot(time,virus4(:,2),Color=red4 ,MarkerEdgeColor='k',MarkerFaceColor=red4,LineStyle="none",Marker="^",MarkerSize=default_msize );
+plot(time,virus4(:,3),Color=red4,MarkerEdgeColor='k',MarkerFaceColor=red4, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
 set(gca,'FontSize',25);
 set(gca,'FontName','Times');
 xlabel('Time (hrs)');
@@ -244,10 +244,10 @@ xtickangle(90);
 
 
 subplot(2,5,10)
-plot(time,virus5(:,1),Color=blue5, MarkerEdgeColor='k',MarkerFaceColor=blue5, LineStyle="none",Marker="square",MarkerSize=default_msize );
+plot(time,virus5(:,1),Color=red5, MarkerEdgeColor='k',MarkerFaceColor=red5, LineStyle="none",Marker="square",MarkerSize=default_msize );
 hold on;
-plot(time,virus5(:,2),Color=blue5 ,MarkerEdgeColor='k',MarkerFaceColor=blue5,LineStyle="none",Marker="^",MarkerSize=default_msize );
-plot(time,virus5(:,3),Color=blue5,MarkerEdgeColor='k',MarkerFaceColor=blue5, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
+plot(time,virus5(:,2),Color=red5 ,MarkerEdgeColor='k',MarkerFaceColor=red5,LineStyle="none",Marker="^",MarkerSize=default_msize );
+plot(time,virus5(:,3),Color=red5,MarkerEdgeColor='k',MarkerFaceColor=red5, LineStyle="none",Marker="diamond",MarkerSize=default_msize );
 set(gca,'FontSize',25);
 set(gca,'FontName','Times');
 xlabel('Time (hrs)');
