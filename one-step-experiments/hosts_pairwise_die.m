@@ -83,14 +83,14 @@ total_virus_lysis_res = y_series_lysis_res(end,:);
 subplot(4,4,1)
 
 plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
-plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
-plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+%plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
+%plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
+%plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
 ylabel('Virus density (/ml)')
-title('CBA18-2 on CBA 18');
+title('CBA18:2 on CBA 18');
 set(gca,'FontSize',20);
 for i = 1:num_replicates
     for j = 1:3
@@ -100,7 +100,7 @@ end
 xlim([0 15.75]);
 %ylim([1e3 1e9]);
 yticks([1e3 1e5 1e7 1e9]);
-plot([0 945]/60, mean(qprc_virus'), 'Marker','square','MarkerEdgeColor','k','MarkerFaceColor','k','LineStyle','none');
+%plot([0 945]/60, mean(qprc_virus'), 'Marker','square','MarkerEdgeColor','k','MarkerFaceColor','k','LineStyle','none');
 
 
 
@@ -111,22 +111,22 @@ host_den_lysis_res = sum(y_series_lysis_res(1:end-1,:));
 
 subplot(4,4,2)
 plot(time_opt,host_den,'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
-plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
-plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
+%plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
+%plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
 
 set(gca,'YScale','log');
 xlabel('Time (hr)');
 ylabel('Host density (/ml)');
 set(gca,'FontSize',20);
-title('CBA18-2 on CBA 18');
+title('CBA18:2 on CBA 18');
 xlim([0 15.75]);
 %ylim([1e-1 1e7]);
 yticks([1e-1, 1e1, 1e3, 1e5, 1e7]);
 
 
 
-plot([0 945]/60, mean(qprc_host'), 'Marker','square','MarkerEdgeColor','k','MarkerFaceColor','k','LineStyle','none');
+%plot([0 945]/60, mean(qprc_host'), 'Marker','square','MarkerEdgeColor','k','MarkerFaceColor','k','LineStyle','none');
 
 
 %% 2
@@ -189,9 +189,9 @@ host_den_lysis_res = sum(y_series_lysis_res(1:end-1,:));
 subplot(4,4,3)
 
 plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
-plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
-plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+%plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
+%plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
+%plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
@@ -212,9 +212,9 @@ yticks([1e3 1e5 1e7 1e9])
 
 subplot(4,4,4)
 plot(time_opt,host_den,'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
-plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
-plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
+%plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
+%plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
 
 set(gca,'YScale','log');
 xlabel('Time (hr)');
@@ -282,9 +282,9 @@ subplot(4,4,5)
 
 
 plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
-plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
-plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+%plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
+%plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
+%plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
@@ -303,9 +303,9 @@ yticks([1e3 1e5 1e7 1e9])
 
 subplot(4,4,6)
 plot(time_opt,host_den,'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
-plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
-plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
+%plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
+%plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
 
 set(gca,'YScale','log');
 xlabel('Time (hr)');
@@ -369,9 +369,9 @@ host_den_lysis_res = sum(y_series_lysis_res(1:end-1,:));
 
 subplot(4,4,7)
 plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
-plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
-plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+%plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
+%plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
+%plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
@@ -390,9 +390,9 @@ yticks([1e3 1e5 1e7 1e9]);
 
 subplot(4,4,8)
 plot(time_opt,host_den,'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
-plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
-plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
+%plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
+%plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
 
 set(gca,'YScale','log');
 xlabel('Time (hr)');
@@ -463,9 +463,9 @@ host_den_lysis_res = sum(y_series_lysis_res(1:end-1,:));
 
 subplot(4,4,9)
 plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
-plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
-plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+%plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
+%plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
+%plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
 
 
 set(gca,'YScale','log');
@@ -487,9 +487,9 @@ yticks([1e3 1e5 1e7 1e9]);
 
 subplot(4,4,10)
 plot(time_opt,host_den,'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
-plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
-plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
+%plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
+%plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
 
 set(gca,'YScale','log');
 xlabel('Time (hr)');
@@ -554,9 +554,9 @@ host_den_lysis_res = sum(y_series_lysis_res(1:end-1,:));
 
 subplot(4,4,11)
 plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
-plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
-plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+%plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
+%plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
+%plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
@@ -576,9 +576,9 @@ yticks([1e3 1e5 1e7 1e9]);
 
 subplot(4,4,12)
 plot(time_opt,host_den,'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
-plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
-plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
+%plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
+%plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
 
 set(gca,'YScale','log');
 xlabel('Time (hr)');
@@ -647,9 +647,9 @@ host_den_lysis_res = sum(y_series_lysis_res(1:end-1,:));
 
 subplot(4,4,13)
 plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
-plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
-plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+%plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
+%plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
+%plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
@@ -669,9 +669,9 @@ yticks([1e3 1e5 1e7 1e9]);
 
 subplot(4,4,14)
 plot(time_opt,host_den,'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
-plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
-plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
+%plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
+%plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
 
 set(gca,'YScale','log');
 xlabel('Time (hr)');
@@ -748,9 +748,9 @@ subplot(4,4,15)
 
 % Plot the virus density
 plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
-plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
-plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+%plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
+%plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
+%plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
 
 hold on;
 set(gca,'YScale','log');
@@ -775,16 +775,16 @@ ylim([1e3 1e9]);
 yticks([1e3 1e5 1e7 1e9]);
 
 % Display the legend for this subplot
-legend('Baseline model','Ineffective viral adsorption','Ineffective viral infection','Lysis reset model','Virus Data','AutoUpdate','off');
-legend('show');
+%legend('Baseline model','Ineffective viral adsorption','Ineffective viral infection','Lysis reset model','Virus Data','AutoUpdate','off');
+%legend('show');
 
 % Plot the host density in the second subplot
 host_den = sum(y_series_opt(1:end-1,:));
 subplot(4,4,16);
 plot(time_opt,host_den,'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
-plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
-plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
+%plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
+%plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
 
 hold on;
 set(gca, 'YScale', 'log');

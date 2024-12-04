@@ -29,7 +29,7 @@ cba18_2_18_host = 1e3*[4.30E+02	2.66E+02	4.71E+02;
 cba18_2_18_phage = 1e3*[1.50E+04	1.50E+04	1.37E+04;
 6.01E+08	5.57E+08	5.58E+08];
 
-X ={'C-host','P-host','Phage'};
+X ={'Uninfected host','Infected host','Phage'};
 
 figure(2)
 subplot(3,3,1)
@@ -38,7 +38,7 @@ bar(X,what_to_plot);
 set(gca,'YScale','log');
 ylim([1e3 1e12]);
 ylabel('Genome copies/ml');
-set(gca,'FontSize',14);
+set(gca,'FontSize',20);
 yticks([1e3 1e5 1e7 1e9 1e11]);
 title('CBA 18:2 on CBA 18');
 
@@ -56,7 +56,7 @@ bar(X,what_to_plot);
 set(gca,'YScale','log');
 ylim([1e3 1e12]);
 ylabel('Genome copies/ml');
-set(gca,'FontSize',14);
+set(gca,'FontSize',20);
 yticks([1e3 1e5 1e7 1e9 1e11]);
 title('CBA 18:3 on CBA 4');
 
@@ -74,11 +74,33 @@ bar(X,what_to_plot);
 set(gca,'YScale','log');
 ylim([1e3 1e12]);
 ylabel('Genome copies/ml');
-set(gca,'FontSize',14);
+set(gca,'FontSize',20);
 yticks([1e3 1e5 1e7 1e9 1e11]);
 title('CBA 18:3 on CBA 18');
 
 %% 4
+
+cba38_1_18_host = 1e3*[2.35E+02	3.26E+02	3.33E+02;
+3.87E+03	3.29E+03	3.80E+03];
+
+cba38_1_18_phage = 1e3*[4.32E+05	4.75E+05	4.76E+05; %this had a mistake
+4.48E+05	4.46E+05	4.00E+05];
+
+subplot(3,3,4)
+what_to_plot = [mean(cba18_nophage');mean(cba38_1_18_host'); mean(cba38_1_18_phage')];
+bar(X,what_to_plot);
+set(gca,'YScale','log');
+ylim([1e3 1e12]);
+ylabel('Genome copies/ml');
+set(gca,'FontSize',20);
+yticks([1e3 1e5 1e7 1e9 1e11]);
+title('CBA 38:1 on CBA 18');
+
+
+
+
+%% 5 
+
 cba38_1_38_host = 1e3*[1.07E+02	1.15E+02	1.00E+02;
 1.28E+02	8.30E+01	2.68E+02];
 
@@ -86,35 +108,17 @@ cba38_1_38_phage = 1e3*[3.86E+05	4.23E+05	4.22E+05;
 9.79E+06	9.57E+06	9.60E+06];
 
 
-subplot(3,3,4)
+subplot(3,3,5)
 what_to_plot = [mean(cba38_nophage');mean(cba38_1_38_host'); mean(cba38_1_38_phage')];
 bar(X,what_to_plot);
 set(gca,'YScale','log');
 ylim([1e3 1e12]);
 ylabel('Genome copies/ml');
-set(gca,'FontSize',14);
+set(gca,'FontSize',20);
 yticks([1e3 1e5 1e7 1e9 1e11]);
 title('CBA 38:1 on CBA 38');
 
-
-%5 
-cba38_1_18_host = 1e3*[2.35E+02	3.26E+02	3.33E+02;
-3.87E+03	3.29E+03	3.80E+03];
-
-cba38_1_18_phage = 1e3*[4.32E+05	4.75E+05	4.76E+05; %this had a mistake
-4.48E+05	4.46E+05	4.00E+05];
-
-subplot(3,3,5)
-what_to_plot = [mean(cba18_nophage');mean(cba38_1_18_host'); mean(cba38_1_18_phage')];
-bar(X,what_to_plot);
-set(gca,'YScale','log');
-ylim([1e3 1e12]);
-ylabel('Genome copies/ml');
-set(gca,'FontSize',14);
-yticks([1e3 1e5 1e7 1e9 1e11]);
-title('CBA 38:1 on CBA 38');
-
-%6
+%% 6
 
 hp1_h100_host = 1e3*[8.79E+01	5.59E+01	2.70E+01;
 3.05E+01	3.60E+00	2.01E+01];
@@ -128,11 +132,11 @@ bar(X,what_to_plot);
 set(gca,'YScale','log');
 ylim([1e3 1e12]);
 ylabel('Genome copies/ml');
-set(gca,'FontSize',14);
+set(gca,'FontSize',20);
 yticks([1e3 1e5 1e7 1e9 1e11]);
 title('PSA HP1 on PSA H100');
 
-%7
+%% 7
 hp1_1315_host = 1e3*[1.58E+02	9.28E+01	2.59E+02;
 8.97E+00	7.95E+00	1.01E+01];
 
@@ -145,11 +149,11 @@ bar(X,what_to_plot);
 set(gca,'YScale','log');
 ylim([1e3 1e12]);
 ylabel('Genome copies/ml');
-set(gca,'FontSize',14);
+set(gca,'FontSize',20);
 yticks([1e3 1e5 1e7 1e9 1e11]);
 title('PSA HP1 on PSA 13-15');
 
-%8
+%% 8
 
 hs6_h100_host = 1e3*[1.16E+01	6.26E+01	6.66E+01;
 9.89E+02	2.36E+02	9.40E+01];
@@ -163,11 +167,11 @@ bar(X,what_to_plot);
 set(gca,'YScale','log');
 ylim([1e3 1e12]);
 ylabel('Genome copies/ml');
-set(gca,'FontSize',14);
+set(gca,'FontSize',20);
 yticks([1e3 1e5 1e7 1e9 1e11]);
 title('PSA HS6 on PSA H100');
 
-%9
+%% 9
 hs6_1315_host = 1e3*[9.02E+01	4.22E+02	1.03E+02;
 6.25E+02	7.06E+02	1.30E+03];
 
@@ -180,7 +184,7 @@ bar(X,what_to_plot);
 set(gca,'YScale','log');
 ylim([1e3 1e12]);
 ylabel('Genome copies/ml');
-set(gca,'FontSize',14);
+set(gca,'FontSize',20);
 yticks([1e3 1e5 1e7 1e9 1e11]);
 title('PSA HS6 on PSA 13-15');
 
