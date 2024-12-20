@@ -38,9 +38,11 @@ errorbar(time,mean(HP1_C),std(HP1_C),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('PSA H100 -- PSA HP1');
+title('PSA H100 - PSA HP1');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 
@@ -72,9 +74,12 @@ errorbar(time,mean(HS6_C),std(HS6_C),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('PSA H100 -- PSA HS6');
+title('PSA H100 - PSA HS6');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
+
 
 
 subplot(2,5,3)
@@ -105,9 +110,12 @@ errorbar(time,mean(HP1_C),std(HP1_C),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('PSA 13-15 -- PSA HP1');
+title('PSA 13-15 - PSA HP1');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
+
 
 
 subplot(2,5,4)
@@ -137,9 +145,11 @@ errorbar(time,mean(HS6_C),std(HS6_C),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('PSA 13-15 -- PSA HS6');
+title('PSA 13-15 - PSA HS6');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 
@@ -171,9 +181,12 @@ errorbar(time,mean(C_18_3),std(C_18_3),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('CBA4 -- \phi18:3');
+title('CBA4 - \phi18:3');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
+
 
 
 subplot(2,5,7)
@@ -204,9 +217,11 @@ errorbar(time,mean(C_18_2),std(C_18_2),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('CBA18 -- \phi18:2');
+title('CBA18 - \phi18:2');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 
@@ -239,9 +254,11 @@ errorbar(time,mean(C_18_3),std(C_18_3),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('CBA18 -- \phi18:3');
+title('CBA18 - \phi18:3');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 
@@ -274,9 +291,11 @@ errorbar(time,mean(C_38_1),std(C_38_1),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('CBA18 -- \phi38:1');
+title('CBA18 - \phi38:1');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 
@@ -305,13 +324,16 @@ errorbar(time,mean(C_38_1),std(C_38_1),'Marker','^', ...
     'MarkerEdgeColor',blue,'MarkerFaceColor',blue, ...
     'MarkerSize',10,LineWidth=2',Color=blue);
 
-legend('control','infection from mock community','no phage control from mock community','added to pairwise infection','added to no phage control')
+%legend('control','infection from mock community','no phage control from mock community','added to pairwise infection','added to no phage control')
+legend('Phage free host','Phage free host + (5H/5V)spent media','Phage free host + (5H)spent media','Phage infected host + (5H/5V)spent media','Phage infected host + (5H)spent media');
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('CBA38 -- \phi38:1');
+title('CBA38 - \phi38:1');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 
@@ -352,9 +374,11 @@ errorbar(time,mean(HP1_C),std(HP1_C),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('PSA H100 -- PSA HP1');
+title('PSA H100 - PSA HP1');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 
@@ -386,9 +410,11 @@ errorbar(time,mean(HS6_C),std(HS6_C),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('PSA H100 -- PSA HS6');
+title('PSA H100 - PSA HS6');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 subplot(2,5,3)
@@ -419,9 +445,12 @@ errorbar(time,mean(HP1_C),std(HP1_C),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('PSA 13-15 -- PSA HP1');
+title('PSA 13-15 - PSA HP1');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
+
 
 
 subplot(2,5,4)
@@ -451,9 +480,11 @@ errorbar(time,mean(HS6_C),std(HS6_C),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('PSA 13-15 -- PSA HS6');
+title('PSA 13-15 - PSA HS6');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 
@@ -485,9 +516,12 @@ errorbar(time,mean(C_18_3),std(C_18_3),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('CBA4 -- \phi18:3');
+title('CBA4 - \phi18:3');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
+
 
 
 subplot(2,5,7)
@@ -518,10 +552,11 @@ errorbar(time,mean(C_18_2),std(C_18_2),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('CBA18 -- \phi18:2');
+title('CBA18 - \phi18:2');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
-
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 
@@ -553,10 +588,11 @@ errorbar(time,mean(C_18_3),std(C_18_3),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('CBA18 -- \phi18:3');
+title('CBA18 - \phi18:3');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
-
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 
@@ -588,10 +624,11 @@ errorbar(time,mean(C_38_1),std(C_38_1),'Marker','^', ...
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('CBA18 -- \phi38:1');
+title('CBA18 - \phi38:1');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
-
+set(gca, 'FontSize', 20);
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 subplot(2,5,10)
@@ -619,15 +656,18 @@ errorbar(time,mean(C_38_1),std(C_38_1),'Marker','^', ...
     'MarkerEdgeColor',blue,'MarkerFaceColor',blue, ...
     'MarkerSize',10,LineWidth=2',Color=blue);
 
-legend('control','infection from mock community','no phage control from mock community','added to pairwise infection','added to no phage control')
+%legend('control','infection from mock community','no phage control from mock community','added to pairwise infection','added to no phage control')
+legend('Phage free host','Phage free host + (5H/5V)spent media','Phage free host + (5H)spent media','Phage infected host + (5H/5V)spent media','Phage infected host + (5H)spent media');
 
 
 xlabel('Time (hr)');
 ylabel('OD_{600 nm}');
-title('CBA38 -- \phi38:1');
+title('CBA38 - \phi38:1');
 set(gca, 'YScale', 'log');
-set(gca, 'FontSize', 14);
+set(gca, 'FontSize', 20);
 
+ylim([1e-4 1e0]);
+yticks([1e-4 1e-3 1e-2 1e-1 1e0]);
 
 
 

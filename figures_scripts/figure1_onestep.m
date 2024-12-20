@@ -316,7 +316,7 @@ box on;
 xlim([0 1.75]);
 ylim([1e2 1e8])
 
-
+%%
 
 subplot(2,4,7)
 %load("./results_same_phi/HS6_H100_3-inferred.mat");
@@ -367,7 +367,7 @@ box on;
 xlim([0 3.5]);
 ylim([1e2 2e8])   
 
-
+%%
 subplot(2,4,8)
 %load("./results_same_phi/HS6_13-15_3-inferred.mat");
 
@@ -434,9 +434,13 @@ phi_one_step_conventional_error = [3.4e-09     3.99e-08     2.66e-08     4.96e-1
 
 
 
-beta_onestep = [   126.55        1.901       63.884        36.55       75.092       87.229       431.35       324.15];
-tau_onestep = [   1.8781       1.9068       2.0352       1.8012       1.4589       1.3709       2.207       2.0193];
-phi_onestep = [ 1.776e-08   5.6449e-08   1.2386e-07    3.506e-08   1.2251e-07   8.5023e-08   5.588e-08   4.4429e-08];
+%beta_onestep = [   126.55        1.901       63.884        36.55       75.092       87.229       431.35       324.15];
+%beta_onestep = [   126.55        1.901       63.884        36.55       75.092       87.229      357.3      324.15];
+beta_onestep = [   126.55        1.901       63.884        36.55       75.092       87.229      435.6      324.15]; %18 (hs6_h100)
+
+
+tau_onestep = [   1.8781       1.9068       2.0352       1.8012       1.4589       1.3709       2.22       2.0193];
+phi_onestep = [ 1.776e-08   5.6449e-08   1.2386e-07    3.506e-08   1.2251e-07   8.5023e-08    5.6039e-08    4.4429e-08];
 
 
 
@@ -445,7 +449,7 @@ tau_onestep_error = [   0.038254      0.26513      0.17063      0.27281      0.1
 phi_onestep_error = [ 5.2604e-09   1.1261e-08   2.7217e-08   1.2592e-08   1.3211e-08    9.791e-09   7.6718e-09     7.4481e-09];
 
 
- r_bayesian = [      0.2531      0.18702      0.23981      0.21843      0.28019      0.25393       0.2866      0.25793];
+ r_bayesian = [      0.2531      0.18702      0.23981      0.21843      0.28019      0.25393       0.29      0.25793];
  r_bayesian_std = [  0.013507     0.048525     0.048     0.046714     0.042521     0.049102     0.042063     0.019837];
 
 
@@ -458,7 +462,7 @@ r_onestep_conventional = [0.19,0.245,0.22,0.28,0.25];
 r_onestep_conventional_error =   [0.019093     0.021355     0.030257     0.052883     0.044104]';
 
 
-boxes_onestep = [   148.01           10       171.79       77.868        138.8       108.48          148      187.61];
+boxes_onestep = [   148.01           10       171.79       77.868        138.8       108.48          156     187.61];
 boxes_onestep_error = [ 22.555     0.043257       84.682       64.002       72.778       25.955       60       61.193];
 
 
@@ -525,9 +529,9 @@ xlim([0 9]);
 
 
 subplot(1,5,5)
-errorbar([1:5] -0.1,r_onestep_conventional,r_onestep_conventional_error,'^','MarkerSize',14,'MarkerFaceColor',color_def2,'Color',color_def2,LineWidth=2);
+errorbar([1:5] ,r_onestep_conventional,r_onestep_conventional_error,'^','MarkerSize',14,'MarkerFaceColor',color_def2,'Color',color_def2,LineWidth=2);
 hold on;
-errorbar([1:5]+0.1, r_onestep, r_onestep_error,'bo','MarkerSize',14,'MarkerFaceColor',[0.5,0.5,0.5],'Color',[0.5,0.5,0.5],LineWidth=2);
+%errorbar([1:5]+0.1, r_onestep, r_onestep_error,'bo','MarkerSize',14,'MarkerFaceColor',[0.5,0.5,0.5],'Color',[0.5,0.5,0.5],LineWidth=2);
 
 title({'Growth rate','r (cells/hr)'});
 ylim([0.1 0.35]);

@@ -16,6 +16,16 @@ red3 = [0.6 0.4 0.4];
 
 blue1 = [0.1 0.1 1];
 blue2 = [0.3 0.3 0.8];
+
+
+
+
+blue1 = [179,205,224]/255;
+blue2 = [100,151,177]/255;
+blue3 = [0,91,150]/255;
+blue4 = [3,10,208]/255;
+blue5 = [0,0,75]/255;
+
 %%
 figure(1)
 subplot(1,2,1)
@@ -31,12 +41,12 @@ prob4 = 1 - 1./(1+(D2./Dc4).^2);
 prob5 = 1 - 1./(1+(D2./Dc5).^2); 
 
 
-plot(t2,prob,'LineWidth',2.5,'Color',red1);
+plot(t2,prob,'LineWidth',2.5,'Color',blue1);
 hold on; 
-plot(t2,prob2,'LineWidth',2.5,'Color',red2);
-plot(t2,prob3,'LineWidth',2.5,'Color',red3);
-plot(t2,prob4,'LineWidth',2.5,'Color',blue1);
-plot(t2,prob5,'LineWidth',2.5,'Color',blue2);
+plot(t2,prob2,'LineWidth',2.5,'Color',blue2);
+plot(t2,prob3,'LineWidth',2.5,'Color',blue3);
+plot(t2,prob4,'LineWidth',2.5,'Color',blue4);
+plot(t2,prob5,'LineWidth',2.5,'Color',blue5);
 xlabel('Time (hours)');
 ylabel('Probability of infection inhibition');
 set(gca,'FontSize',24);
@@ -47,12 +57,12 @@ set(gca,'fontname','times')
 
 
 subplot(1,2,2)
-plot(D2,prob,'LineWidth',2.5,'Color',red1);
+plot(D2,prob,'LineWidth',2.5,'Color',blue1);
 hold on;
-plot(D2,prob2,'LineWidth',2.5,'Color',red2);
-plot(D2,prob3,'LineWidth',2.5,'Color',red3);
-plot(D2,prob4,'LineWidth',2.5,'Color',blue1);
-plot(D2,prob5,'LineWidth',2.5,'Color',blue2);
+plot(D2,prob2,'LineWidth',2.5,'Color',blue2);
+plot(D2,prob3,'LineWidth',2.5,'Color',blue3);
+plot(D2,prob4,'LineWidth',2.5,'Color',blue4);
+plot(D2,prob5,'LineWidth',2.5,'Color',blue5);
 
 set(gca, 'YScale', 'log')
 xlabel({'Debris concentration', '(10^7 Lysed cells/ml)'});
@@ -60,11 +70,11 @@ ylabel({'Probability of infection inhibition'});
 set(gca,'FontSize',24);
 yline(0.5,'--k',LineWidth=1.5);
 
-xline(Dc, '--', LineWidth= 1,Color=red1);
-xline(Dc2, '--', LineWidth= 1,Color=red2);
-xline(Dc3, '--', LineWidth= 1,Color=red3);
-xline(Dc4, '--', LineWidth= 1,Color=blue1);
-xline(Dc5, '--', LineWidth= 1,Color=blue2);
+xline(Dc, '--', LineWidth= 1,Color=blue1);
+xline(Dc2, '--', LineWidth= 1,Color=blue2);
+xline(Dc3, '--', LineWidth= 1,Color=blue3);
+xline(Dc4, '--', LineWidth= 1,Color=blue4);
+xline(Dc5, '--', LineWidth= 1,Color=blue5);
 
 
 %xline(Dc,'--r',LineWidth=1.5);

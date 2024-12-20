@@ -9,6 +9,8 @@ color2 = [217,76,33]./255;
 
 
 chain = chain(5000:end,:);
+chain = chain(1:end,:);
+
 burn = 1;
 
 chain_1 = chain(1:end/2,1:5);
