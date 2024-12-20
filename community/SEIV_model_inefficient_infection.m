@@ -1,39 +1,21 @@
-% I am testing now with phage host uncoupled.
+
 
 % just to plot the model with the inferred median parameters (approx)
 % no dependancies -- these dependancies have driven me crazy!
 
 clear;
 clc;
-
-%%
-load('./data/triplicate_data.mat');
-
-
-S0(1) = mean(1e3*host1(1,:)');
-S0(2) = mean(1e3*host2(1,:)');
-S0(3) = mean(1e3*host3(1,:)');
-S0(4) = mean(1e3*host4(1,:)');
-S0(5) = mean(1e3*host5(1,:)');
-
-
-V0(1) = mean(1e3*virus1(1,:)');
-V0(2) = mean(1e3*virus2(1,:)');
-V0(3) = mean(1e3*virus3(1,:)');
-V0(4) = mean(1e3*virus4(1,:)');
-V0(5) = mean(1e3*virus5(1,:)');
-
-
-
 %% Settings for running the model
 
-model =  SEIVD_diff_NE_diff_debris_abs(5,5,200);
-model.name = 'SEIVD-diffabs';
-model.debris_inhib = 2;
-model.debris_inhib2 = 2;
-model.debris_inhib3 = 2;
-model.debris_inhib4 = 2;
-model.debris_inhib5 = 2;
+addpath('./src/models/');
+
+model = SEIV_diff_NE_ineffi_infection(5,5,200);
+model.name = 'SEIV-noninfectious';
+model.debris_inhib = 0;
+model.debris_inhib2 = 0;
+model.debris_inhib3 = 0;
+model.debris_inhib4 = 0;
+model.debris_inhib5 = 0;
 
 
 % the important parameters.
@@ -78,7 +60,6 @@ pars_afterinf.phi = [            0   5.8924e-08            0            0       
             0            0            0    6.114e-08   1.1905e-08
             0            0            0   6.0123e-08   2.2635e-08];
 
-%pars_afterinf.phi = zeros(5,5);
 
 pars_afterinf.Dc = 5.0415e+06;
 pars_afterinf.Dc2 = 5.9627e+06;
@@ -99,10 +80,6 @@ pars_afterinf.S0 = [2.5111e+06
     6.205e+06
    7.7533e+06];
 
-
-pars_afterinf.V0 =  V0;
-pars_afterinf.S0 =  S0;
-
 pars_afterinf.epsilon = [1 1 1 1 1 1 1 1 1 1];
 
 % not important -- the model class does not call these paramters, the
@@ -114,14 +91,12 @@ pars_afterinf.m = [  0.00081472
    0.00091338
    0.00063236];
 
-pars_afterinf.m = zeros(5,1);
 pars_afterinf.q = [0.5
           0.5
           0.5
           0.5
           0.5];
 
-pars_afterinf.q = zeros(5,1);
 pars_afterinf.prob = [    0
      0
      0
@@ -131,9 +106,6 @@ pars_afterinf.prob = [    0
 
 
 %% simulate 
-
-%%%%% S is the sum of hosts and not susceptible -- I got a heart attack
-%%% there is NO bug :) 
 
 tvec = 0:0.1:15.75;
 [t_after,S_after,V_after,D_after,I_after,E_after] =  simulate_ode(model,pars_afterinf,tvec,pars_afterinf.S0,pars_afterinf.V0); % mcmc parameter set
@@ -151,7 +123,7 @@ subplot(2,5,1)
 errorbar(time/60,mean(1e3*host1'),std(1e3*host1'),'o','MarkerSize',8,'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255]);hold on;
 set(gca, 'YScale', 'log');
 set(gca,'fontname','times')  % Set it to times
-ylim([1e5 1e9]);
+ylim([1e5 1e8]);
     xlim([0 16]);
     xticks([0 2 4 6 8 10 12 14 16]);
     set(gca,'FontSize',20);
@@ -168,7 +140,7 @@ subplot(2,5,2)
 errorbar(time/60,mean(1e3*host2'),std(1e3*host2'),'o','MarkerSize',8,  'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255] );hold on;
 set(gca, 'YScale', 'log');
 set(gca,'fontname','times')  % Set it to times
-ylim([1e5 1e9]);
+ylim([1e5 1e8]);
     xlim([0 16]);
    xticks([0 2 4 6 8 10 12 14 16]);
     set(gca,'FontSize',20);
@@ -185,7 +157,7 @@ subplot(2,5,3)
 errorbar(time/60,mean(1e3*host3'),std(1e3*host3'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255]);hold on;
 set(gca, 'YScale', 'log');
 set(gca,'fontname','times')  % Set it to times
-ylim([1e5 1e9]);
+ylim([1e5 1e8]);
     xlim([0 16]);
     xticks([0 2 4 6 8 10 12 14 16]);
     set(gca,'FontSize',20);
@@ -201,7 +173,7 @@ subplot(2,5,4)
 errorbar(time/60,mean(1e3*host4'),std(1e3*host4'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255]);hold on;
 set(gca, 'YScale', 'log');set(gca,'FontSize',20)
 set(gca,'fontname','times')  % Set it to times
-ylim([1e5 1e9]);
+ylim([1e5 1e8]);
     xlim([0 16]);
   xticks([0 2 4 6 8 10 12 14 16]);
   axis('square');
@@ -209,8 +181,7 @@ ylim([1e5 1e9]);
     title('PSA H100','FontSize',18);
     
     plot(t_after,S_after(:,4),'-','Color',color_ofthe_fit,'LineWidth',linewidth);
-bacteria_exp = pars_afterinf.S0(4) * exp(pars_afterinf.r(4) * t_after);
-plot(t_after,bacteria_exp,'k--')
+
 
 
 
@@ -218,7 +189,7 @@ subplot(2,5,5)
 errorbar(time/60,mean(1e3*host5'),std(1e3*host5'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',[70/255,130/255,180/255]);hold on;
 set(gca, 'YScale', 'log');set(gca,'FontSize',20);
 set(gca,'fontname','times')  % Set it to times
-ylim([1e5 1e9]);
+ylim([1e5 1e8]);
     xlim([0 16]);
     xticks([0 2 4 6 8 10 12 14 16]);
     axis('square');
@@ -317,61 +288,3 @@ han.YLabel.Visible='on';
 set(gca,'FontSize',20);
 set(gca,'fontname','times')  % Set it to times
 xlabel("Time (hours)");
-
-
-%%
-
-%save('fits_seivd','t_after','S_after','V_after')
-
-%%
-
-NH = pars_afterinf.NH;
-NV = pars_afterinf.NV;
-NE = 200;
-
-
-for i = 1:158
-
-E = E_after(i,:);
-N = S_after(i,:);
-I = I_after(i,:);
-
-E = reshape(E,[NH NV NE]);
-E = sum(E,3);
-E = sum(E,2);
-E = E';
-
-I = reshape(I, [NH NV]);
-I = sum(I);
-
-sus = N - E - I; % vector
-prop(i,:) = sus./N; 
-
-i
-end
-
-%%
-
-
-blue1 = [179,205,224]/255;
-blue2 = [100,151,177]/255;
-blue3 = [0,91,150]/255;
-blue4 = [3,10,208]/255;
-blue5 = [0,0,75]/255;
-
-
-figure()
-plot(t_after,prop(:,1),linewidth=2,Color=blue1);
-hold on;
-plot(t_after,prop(:,2),linewidth=2,Color=blue2);
-plot(t_after,prop(:,3),linewidth=2,Color=blue3);
-plot(t_after,prop(:,4),linewidth=2,Color=blue4);
-plot(t_after,prop(:,5),linewidth=2,Color=blue5);
-
-
-ylabel('Total susceptible/Total Bacteria');
-xlabel('Time (hr)');
-title('From SEIVD model');
- set(gca,'FontName','Times','FontSize',18);
-
-
