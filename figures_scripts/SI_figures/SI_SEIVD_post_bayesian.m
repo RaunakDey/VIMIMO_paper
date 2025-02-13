@@ -472,7 +472,7 @@ R_2 =  ( (N-1)/N * W + (B/N) ) ./W;
 R =  min(R_1,R_2);
 
 figure(100)
-subplot(1,2,1)
+subplot(2,1,1)
 b = bar(R_2,'FaceColor','flat');
 
 for i = 1:9
@@ -504,13 +504,18 @@ xlim([0 38])
 ylabel('R_{GR}')
 yticks([0 0.2 0.4 0.6 0.8 0.9 1]);
 
+set(gca, 'XTick', 1:37 + 0.5);
+xticklabels({'\beta_{21}','\beta_{12}','\beta_{22}','\beta_{23}','\beta_{33}','\beta_{44}','\beta_{54}','\beta_{45}','\beta_{55}', ...
+   '\phi_{21}','\phi_{12}','\phi_{22}','\phi_{23}','\phi_{33}','\phi_{44}','\phi_{54}','\phi_{45}','\phi_{55}', ...
+   '\tau_{21}','\tau_{12}','\tau_{22}','\tau_{23}','\tau_{33}','\tau_{44}','\tau_{54}','\tau_{45}','\tau_{55}', ...
+   'r_1','r_2','r_3','r_4','r_5','D_{c_1}','D_{c_2}','D_{c_3}','D_{c_4}','D_{c_5}'})
 
-set(gca, 'XTick', [5 14 23 30 35]);
-set(gca, 'XTickLabel', { '\beta_{ij} ' '\phi_{ij}' '\tau_{ij}' 'r_i' '{Dc}_i'});
+%set(gca, 'XTick', [5 14 23 30 35]);
+%set(gca, 'XTickLabel', { '\beta_{ij} ' '\phi_{ij}' '\tau_{ij}' 'r_i' '{Dc}_i'});
+
 set(gca, 'fontname','times');
 
 
-%% geeweke part
 load('./../../community/results/v23.mat');
 chainstats1 = chainstats(chain,mcmcresults);
 geweke1 = chainstats1(:,5);
@@ -523,7 +528,7 @@ geweke2 = chainstats2(:,5);
 geweke_stats = max(geweke1,geweke2);
 
 figure(100)
-subplot(1,2,2)
+subplot(2,1,2)
 b = bar(geweke_stats,'FaceColor','flat');
 
 for i = 1:9
@@ -555,9 +560,15 @@ xlim([0 38])
 ylabel('R_{geweke}')
 yticks([0 0.2 0.4 0.6 0.8 0.9 1]);
 
+set(gca, 'XTick', 1:37 + 0.5);
+xticklabels({'\beta_{21}','\beta_{12}','\beta_{22}','\beta_{23}','\beta_{33}','\beta_{44}','\beta_{54}','\beta_{45}','\beta_{55}', ...
+   '\phi_{21}','\phi_{12}','\phi_{22}','\phi_{23}','\phi_{33}','\phi_{44}','\phi_{54}','\phi_{45}','\phi_{55}', ...
+   '\tau_{21}','\tau_{12}','\tau_{22}','\tau_{23}','\tau_{33}','\tau_{44}','\tau_{54}','\tau_{45}','\tau_{55}', ...
+   'r_1','r_2','r_3','r_4','r_5','D_{c_1}','D_{c_2}','D_{c_3}','D_{c_4}','D_{c_5}'})
 
-set(gca, 'XTick', [5 14 23 30 35]);
-set(gca, 'XTickLabel', { '\beta_{ij} ' '\phi_{ij}' '\tau_{ij}' 'r_i' '{Dc}_i'});
+
+%set(gca, 'XTick', [5 14 23 30 35]);
+%set(gca, 'XTickLabel', { '\beta_{ij} ' '\phi_{ij}' '\tau_{ij}' 'r_i' '{Dc}_i'});
 set(gca, 'fontname','times');
 
 
