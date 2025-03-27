@@ -5,9 +5,9 @@
 </p>
 
 
-<h1 align="center"><em>Scaling phage–bacteria dynamics from pairwise interactions to complex communities</em>: Code repository</h1>
+<h1 align="center"><em>Emergent higher-order interactions enable coexistence in phage-bacteria community dynamics</em>: Code repository</h1>
 
-*By Raunak Dey, 2024*
+*By Raunak Dey, 2025*
 
 
 This is the repository for the paper -- if you want to take a more detailed look you may find our project [VIMIMO](https://github.com/RaunakDey/VIMIMO-Virus-Microbe-modeller/) useful. In this repository all the ODE models, the Bayesian scripts and figure generating scripts can be found. The Bayesian analysis is performed used DRAM-MCMC algorithm using the open-sourced mcmcstat package. 
