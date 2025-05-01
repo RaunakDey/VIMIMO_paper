@@ -64,6 +64,16 @@ xlim([0 max(data.xdata{1})/60]);
 ylim([1e2 1e8])
 
 
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
+%%
 
 subplot(2,4,2)
 %load("./results_same_phi/CBA18-3_4_10-inferred.mat");
@@ -116,6 +126,17 @@ xlim([0 max(data.xdata{1})/60 ]);
 ylim([1e2 1e8])
 
 
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
+
+%%
 subplot(2,4,3)
 %load("./results_same_phi/CBA18-3_18_7-inferred.mat");
 load("./../one-step-experiments/result_replicates/CBA18-3_18_2024_12.mat")
@@ -164,6 +185,16 @@ clear max;
 xlim([0 max(data.xdata{1})/60 ]);
 ylim([1e2 1e8])
 
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
+%%
 
 
 subplot(2,4,4)
@@ -213,8 +244,18 @@ clear max;
 xlim([0 max(data.xdata{1})/60 ]);
 ylim([1e2 1e8])
 
-
-
+%%
+subplot(2,4,4)
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
+%%
 
 
 subplot(2,4,5)
@@ -266,7 +307,17 @@ xlim([0 2.5]);
 ylim([1e2 1e8])
 
 
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
 
+%%
 
 
 subplot(2,4,6)
@@ -315,6 +366,18 @@ box on;
 %clear max;
 xlim([0 1.75]);
 ylim([1e2 1e8])
+
+
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
+
 
 %%
 
@@ -367,6 +430,17 @@ box on;
 xlim([0 3.5]);
 ylim([1e2 2e8])   
 
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
+
+
 %%
 subplot(2,4,8)
 %load("./results_same_phi/HS6_13-15_3-inferred.mat");
@@ -417,6 +491,16 @@ box on;
 xlim([0 3.0]);
 ylim([1e2 1e8])
 
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
+
 
 %% Figure 1D
 
@@ -461,7 +545,7 @@ r_onestep_conventional = [0.19,0.245,0.22,0.28,0.25];
 r_onestep_conventional_error =   [0.019093     0.021355     0.030257     0.052883     0.044104]';
 
 
-boxes_onestep = [   148.01           10       171.79       77.868        138.8       108.48          156     187.61];
+boxes_onestep = [   148.01           10       171.79       77.868        138.8       108.48          156     187.61] +1; %NE+1
 boxes_onestep_error = [ 22.555     0.043257       84.682       64.002       72.778       25.955       60       61.193];
 
 

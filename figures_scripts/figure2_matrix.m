@@ -46,10 +46,10 @@ end
 % Set x-axis and y-axis labels
 
 
-set(gca, 'XTick', (1:5) -0.5, 'XTickLabel', {'\phi18:2', '\phi18:3', '\phi38:1', 'PSA HP1', 'PSA HS6'});
+set(gca, 'XTick', (1:5) -0.5, 'XTickLabel', {'\phi18:2', '\phi18:3', '\phi38:1', 'PSA-HP1', 'PSA-HS6'});
 xtickangle(90);
 
-set(gca, 'YTick', (1:5) -0.5, 'YTickLabel', {'PSA 13-15','PSA H100','CBS 38', 'CBA 18','CBA 4'});
+set(gca, 'YTick', (1:5) -0.5, 'YTickLabel', {'PSA 13-15','PSA H100','CBA 38', 'CBA 18','CBA 4'});
 
 
 
