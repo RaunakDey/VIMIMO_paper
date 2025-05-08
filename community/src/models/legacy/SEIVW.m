@@ -54,7 +54,7 @@ classdef SEIVW < ode_funs
             W = y(obj.id.W);
             D = y(obj.id.D);  
             N = S+sum(Emat,3)*OV+Imat*OV;
-            etaeff = pars.eta*(obj.NE+1);
+            etaeff = pars.eta.*(obj.NE+1);
             
             exposed_transition_fun = obj.exposed_transition_fun;
             host_growth_fun = obj.host_growth_fun;

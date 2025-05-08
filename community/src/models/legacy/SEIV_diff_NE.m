@@ -52,7 +52,7 @@ classdef SEIV_diff_NE < ode_funs
             V = y(obj.id.V);
             D = y(obj.id.D);
             N = S+sum(Emat,3)*OV+Imat*OV;
-            etaeff = pars.eta*(pars.NE+1);
+            etaeff = pars.eta.*(pars.NE+1);
 
             exposed_transition_fun = obj.exposed_transition_fun;
             host_growth_fun = obj.host_growth_fun;
@@ -63,23 +63,41 @@ classdef SEIV_diff_NE < ode_funs
                   
             Sdeb = S*debris_inhib_fun(pars,D); % debris
             
-            dS = host_growth_fun(pars,S,N) - Sdeb.*((pars.M.*pars.phi)*V);
-            dEmat = (pars.M.*pars.phi).*(Sdeb*V') - etaeff.*Emat(:,:,1) + lysis_reset_fun(pars,Imat,OH,V);
-            dEmat2 = exposed_transition_fun(etaeff,Emat);
+            % dS = host_growth_fun(pars,S,N) - Sdeb.*((pars.M.*pars.phi)*V);
+            % dEmat = (pars.M.*pars.phi).*(Sdeb*V') - etaeff.*Emat(:,:,1) + lysis_reset_fun(pars,Imat,OH,V);
+            % dEmat2 = exposed_transition_fun(etaeff,Emat);
+            % for i = 1:obj.NH
+            %     for j = 1:obj.NV
+            %         if (pars.NE(i,j) ~= obj.NE  && pars.NE(i,j) ~=0) 
+            %             Emat(i,j,pars.NE(i,j)+1:end) = Emat(i,j,pars.NE(i,j));
+            %         end
+            %     end
+            % end
+            % 
+            % dImat = etaeff.*Emat(:,:,end) - etaeff.*Imat - lysis_reset_fun(pars,Imat,OH,V);
+            % dV = (pars.beta.*etaeff.*Imat)'*OH - V.*(viral_adsorb_fun(pars)'*N) - viral_decay_fun(pars,V);
+            % dD = sum(etaeff(:).*Imat(:)); % sum across all pairs for net lysis rate
+            
+
+            %debugging
+            dS = pars.r.*S - Sdeb.*((pars.M.*pars.phi)*V);
+            dEmat = (pars.M.*pars.phi).*(Sdeb*V') - etaeff.*Emat(:,:,1);
+            dEmat2 = etaeff.*Emat(:,:,1:end-1) - etaeff.*Emat(:,:,2:end);
             for i = 1:obj.NH
                 for j = 1:obj.NV
-                    if (pars.NE(i,j) ~= obj.NE  && pars.NE(i,j) ~=0) 
+                    if (pars.NE(i,j) ~= obj.NE   && pars.NE(i,j) ~=0) 
                         Emat(i,j,pars.NE(i,j)+1:end) = Emat(i,j,pars.NE(i,j));
                     end
                 end
             end
-            
-            dImat = etaeff.*Emat(:,:,end) - etaeff.*Imat - lysis_reset_fun(pars,Imat,OH,V);
-            dV = (pars.beta.*etaeff.*Imat)'*OH - V.*(viral_adsorb_fun(pars)'*N) - viral_decay_fun(pars,V);
+
+            dImat = etaeff.*Emat(:,:,end) - etaeff.*Imat;
+            dV =  (pars.beta.*etaeff.*Imat)'* OH - V.*((pars.M.*pars.phi)'*N) ;
             dD = sum(etaeff(:).*Imat(:)); % sum across all pairs for net lysis rate
+           
             
             dydt = [dS; dEmat(:); dEmat2(:); dImat(:); dV; dD];
-            
+           
         end
     end
 end
