@@ -10,7 +10,33 @@ load('./../community/data/triplicate_data.mat');
 
 NH = 5;
 NV = 5;
-NE_max = 200;
+
+
+
+pars.phi = 1.0e-07 *[0    0.2070   0  0  0
+    0.1457    0.0107    0.0824  0  0
+         0    0    0.0256 0 0
+         0 0 0 0.0522    0.0314
+         0 0 0  0.1909    0.0192];
+
+  pars.beta = [0  353.3034   0 0 0
+  246.5709  165.5261  223.0705 0 0
+         0         0  169.5272 0 0
+         0 0 0 478.2219  285.2001
+         0 0 0 454.2036  585.3093];
+
+  pars.r = [0.2209
+    0.1322
+    0.1732
+    0.4584
+    0.4725];
+
+pars.tau = [0    2.7869         0 0 0
+    3.5886    1.7665    4.6805 0 0
+         0         0    1.960 0 0
+         0 0 0 5.6604    2.2445
+          0 0 0 1.4071    7.3520];
+
 
 pars.NH = NH;
 pars.NV = NV;
@@ -20,48 +46,25 @@ pars.M = [ 0     1     0     0     0
      0     0     0     1     1
      0     0     0     1     1];
 
-pars.NE = NE_max*pars.M;
-pars.NE_max = NE_max;
+pars.NE = [ 0    30     0     0     0
+     10    80    71     0     0
+     0     0     60     0     0
+     0     0     0     83     70
+     0     0     0     87     70];
 
-pars.phi = 1.0e-07 * [0    0.5892         0         0         0
-    0.1532    0.7788    0.2407         0         0
-         0         0    0.7904         0         0
-         0         0         0    0.6114    0.1191
-         0         0         0    0.6012    0.2264];
-
-pars.beta = [0    2.8875         0         0         0
-  194.9000  204.5800  100.4600         0         0
-         0         0   19.9220         0         0
-         0         0         0  525.3800   60.6530
-         0         0         0  488.0600   51.3260];
-
-pars.r = [ 0.1769
-    0.2207
-    0.2939
-    0.6658
-    0.5281];
+pars.NE_max = max(pars.NE(:));
+NE_max = pars.NE_max;
 
 
-pars.Dc1 = 5041500;
-pars.Dc2 =  5962700;
-pars.Dc3 = 11927000;
-pars.Dc4 =  1832400;
-pars.Dc5 = 1520000;
-            
+%%
+        
 pars.V0 = [428870 2.8689e+05 528000 1.1033e+05 11510000];
 pars.S0 = [2510000 5640000 3.0233e+06 6.2033e+06 7.7533e+06];
 
-pars.tau = [0    2.9978         0         0         0
-    1.7394    2.7460    2.3189         0         0
-         0         0    1.9880         0         0
-         0         0         0    1.8220    4.7139
-         0         0         0    2.3157    1.9868];
 
-pars.eta = [0    0.3333         0         0         0
-    0.5882    0.3704    0.4348         0         0
-         0         0    0.5000         0         0
-         0         0         0    0.5556    0.2128
-         0         0         0    0.4348    0.5000];
+pars.eta = zeros(5,5);
+pars.eta(pars.tau>0) = 1./pars.tau(pars.tau>0);
+
 
 %% id
 
@@ -78,13 +81,13 @@ id.Imat = reshape(id.I,[NH NV]);
 
 %% ODE
 
-function dydt = seivd(t,y,pars,id)
+function dydt = seiv(t,y,pars,id)
 
             NH = pars.NH;
             NV = pars.NV;
             OH = ones(NH,1);
             OV = ones(NV,1);
-            NE_max = 200;
+            NE_max = pars.NE_max;
 
             
             S = y(id.S);
@@ -95,26 +98,8 @@ function dydt = seivd(t,y,pars,id)
             N = S+sum(Emat,3)*OV+Imat*OV;
             etaeff = pars.eta.*(pars.NE+1);  
 
-
-            Sdeb(1) =  y(1)*1./(1+(D./pars.Dc1).^2); % debris
-            Sdeb(2) =  y(2)*1./(1+(D./pars.Dc2).^2);
-            Sdeb(3) =  y(3)*1./(1+(D./pars.Dc3).^2);
-            Sdeb(4) =  y(4)*1./(1+(D./pars.Dc4).^2);
-            Sdeb(5) =  y(5)*1./(1+(D./pars.Dc5).^2);
-            
-
-            Ndeb(1) =  N(1)*1./(1+(D./pars.Dc1).^2); % debris
-            Ndeb(2) =  N(2)*1./(1+(D./pars.Dc2).^2);
-            Ndeb(3) =  N(3)*1./(1+(D./pars.Dc3).^2);
-            Ndeb(4) =  N(4)*1./(1+(D./pars.Dc4).^2);
-            Ndeb(5) =  N(5)*1./(1+(D./pars.Dc5).^2);
-            
-                       
-            
-            Sdeb = Sdeb';
-            
-            dS = pars.r.*S - Sdeb.*((pars.M.*pars.phi)*V);
-            dEmat = (pars.M.*pars.phi).*(Sdeb*V') - etaeff.*Emat(:,:,1);
+            dS = pars.r.*S - S.*((pars.M.*pars.phi)*V);
+            dEmat = (pars.M.*pars.phi).*(S*V') - etaeff.*Emat(:,:,1);
             dEmat2 = etaeff.*Emat(:,:,1:end-1) - etaeff.*Emat(:,:,2:end);
             for i = 1:NH
                 for j = 1:NV
@@ -125,7 +110,7 @@ function dydt = seivd(t,y,pars,id)
             end
             
             dImat = etaeff.*Emat(:,:,end) - etaeff.*Imat;
-            dV =  (pars.beta.*etaeff.*Imat)'* OH - V.*((pars.M.*pars.phi)'*Ndeb') ;
+            dV =  (pars.beta.*etaeff.*Imat)'* OH - V.*((pars.M.*pars.phi)'*N) ;
             dD = sum(etaeff(:).*Imat(:)); % sum across all pairs for net lysis rate
            
             dydt = [dS; dEmat(:); dEmat2(:); dImat(:); dV; dD];
@@ -150,10 +135,10 @@ y0 = [S0; E0(:); I0(:); V0; D0];
 tvec = 0:0.1:15.75;
 
 % ODE wrapper to include parameters
-odefun = @(t, y) seivd(t, y, pars,id);
-
+odefun = @(t, y) seiv(t, y, pars,id);
+options = odeset('NonNegative',1);
 % Run the ODE solver
-[t_out, y_out] = ode45(odefun, tvec, y0);
+[t_out, y_out] = ode45(odefun, tvec, y0,options);
 
 
 
@@ -168,6 +153,14 @@ end
 %% virus
 
 V_out = y_out(:,id.V);
+
+
+%% debug
+% model2 =  SEIVD_diff_NE_diff_debris_abs(5,5,87);
+% pars.epsilon= ones(1,10);
+%[t2,B_out,V_out,D_median,I_median,E_median] =  simulate_ode(model2,pars,tvec,pars.S0,pars.V0); % mcmc parameter set
+
+
 
 %% plot
 
