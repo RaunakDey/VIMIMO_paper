@@ -18,7 +18,7 @@ load('parameters.mat','pars');
 format short g
 
 
-seed = 12;
+%seed = 13;
 
 num_replicates = 1;
 
@@ -86,11 +86,11 @@ model.N0 = 1;
 options.updatesigma = 1;
 
 error_prior = 1;
-model.N0 = 4;
+model.N0 = 1;
 
 %new
-model.S20 = 1;
-seed = 100;
+model.S20 =  0.053598;
+seed = 104;
 
 
 options.nsimu =  50000;
