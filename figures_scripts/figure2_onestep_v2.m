@@ -17,7 +17,7 @@ skips = 10;
 
 tvec_long = 0:0.01:3.5;
 
-
+%%
 figure(1)
 subplot(2,4,1)
 %load("./results_same_phi/CBA18-2_18_5-inferred.mat");
@@ -77,7 +77,8 @@ plot(time2,y_series2(end,:),'k--','LineWidth',2);
 
 subplot(2,4,2)
 %load("./results_same_phi/CBA18-3_4_10-inferred.mat");
-load("./../one-step-experiments/result_replicates/18:3_4_12.mat")
+%load("./../one-step-experiments/result_replicates/18:3_4_12.mat")
+load("./../one-step-experiments/result_replicates/18:3_4_102.mat");
 chain_effective = chain(6000:end,:);
 S0 = mean(S0_replicates);
 V0 = mean(V0_replicates);

@@ -45,11 +45,11 @@ theta_lhs = sampled_params(index,:);
 
 theta_lhs = [177.3423  588.1937  491.9885  501.9945   -7.0920   -7.8204   -7.4877   -8.3562 0.8436    6.1534    9.8564    2.5685    0.4716    0.4648 ];
 
-theta_optimized = search_minimum_psa(theta_lhs,theta_sd,data,model,pars2,mcmcpars2,1,10,1);
+%theta_optimized = search_minimum_psa(theta_lhs,theta_sd,data,model,pars2,mcmcpars2,1,10,1);
 
 theta_optimized_paper = [  227.3423  888.1937  421.9885  761.9945   -7.0920   -7.8204   -7.4877   -8.3562    1.0436    6.3534   10.6564    2.5685    0.4716    0.4648]; 
 
-pars2 = update_pars(pars2,theta_optimized,mcmcpars2);
+pars2 = update_pars(pars2,theta_optimized_paper,mcmcpars2);
 
 pars2.eta(pars2.tau>0) = 1./pars2.tau(pars2.tau>0);
 
@@ -106,7 +106,7 @@ ylim([1e4 1e11]);
     set(gca,'FontSize',20);
     axis('square');
    yticks([1e4 1e6 1e8 1e10]);
-   title('PSA HP1','FontSize',18);
+   title('PSA-HP1','FontSize',18);
     
     plot(t2,V_median(:,1),'-','Color',color_ofthe_fit,'LineWidth',linewidth);
 
@@ -122,7 +122,7 @@ ylim([1e4 1e11]);
     set(gca,'FontSize',20);
     axis('square');
   yticks([1e4 1e6 1e8 1e10]);
-  title('PSA HS6','FontSize',18);
+  title('PSA-HS6','FontSize',18);
     
     plot(t2,V_median(:,2),'-','Color',color_ofthe_fit,'LineWidth',linewidth);
     %legend('Data','95% confidence interval','Bayesian fit');
@@ -134,7 +134,7 @@ han.XLabel.Visible='on';
 han.YLabel.Visible='on';
 set(gca,'FontSize',20);
 set(gca,'fontname','times')  % Set it to times
-xlabel("Time (hours)");
+%xlabel("Time (hours)");
 
 
 

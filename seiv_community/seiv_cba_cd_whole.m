@@ -35,16 +35,16 @@ theta_sd = [10
 theta_lhs = [368.8264  113.6682  124.1114   63.2691   81.8345   -8.7005   -8.0013   -7.5070   -8.9248   -7.3836    1.9432    3.4407    3.6011    2.7950  3.9504    0.2265    0.1223    0.1594];
 
 
-theta_optimized = search_minimum_cba(theta_lhs,theta_sd,data,model,pars2,mcmcpars2,1,15,1)
+%theta_optimized = search_minimum_cba(theta_lhs,theta_sd,data,model,pars2,mcmcpars2,1,15,1)
 
-
+theta_optimized_paper = [478.8264  203.6682  124.1114  183.2691  191.8345   -8.9005   -8.2013   -7.9070   -8.5248   -7.3836    1.5432    2.5407    3.2011    4.2950    3.8504    0.0765    0.0723    0.0594];
+theta_optimized =theta_optimized_paper;
 
 pars2 = update_pars(pars2,theta_optimized,mcmcpars2);
 
 pars2.eta(pars2.tau>0) = 1./pars2.tau(pars2.tau>0);
 [t2,S_median,V_median,D_median,I_median,E_median] =  simulate_ode(model,pars2,tvec,pars2.S0,pars2.V0); % mcmc parameter set
 
-theta_optimized_paper = [478.8264  203.6682  124.1114  183.2691  191.8345   -8.9005   -8.2013   -7.9070   -8.5248   -7.3836    1.5432    2.5407    3.2011    4.2950    3.8504    0.0765    0.0723    0.0594];
 
 
 %%

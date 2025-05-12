@@ -54,7 +54,7 @@ set(gca,'YScale','log');
 ylim([1e5 1e8]);
 yticks([ 1e6, 1e7, 1e8]);
 xticks([]);
-legend('CBA4','CBA18', 'CBA38','PSA H100','PSA 13-15')
+%legend('CBA4','CBA18', 'CBA38','PSA H100','PSA 13-15')
 
 
 % Tile 2
@@ -68,12 +68,12 @@ errorbar(time, mean(virus5'), std(virus5'),Marker="o",MarkerFaceColor =red5, Mar
 hold on;
 set(gca,'FontSize',30);
 set(gca,'FontName','Times');
-ylabel('Phage density (cells/ml)')
+ylabel('Phage density (virions/ml)')
 set(gca,'YScale','log');
 xticks(0:1:16);
 ylim([1e4 1e12]);
 yticks([1e4, 1e5,1e6,1e7, 1e8, 1e9, 1e10, 1e11]);
-legend('\phi18:2','\phi18:3', '\phi38:1','PSA HP1','PSA HS6')
+%legend('\phi18:2','\phi18:3', '\phi38:1','PSA-HP1','PSA-HS6')
 xlabel('Time (hrs)')
 
 %%
@@ -239,7 +239,7 @@ yticks([1e4, 1e6,1e8,1e10]);
 set(gca, 'YScale','log');
 xlim([0 16]);
 xticks(0:2:16);
-title('PSA HP1');
+title('PSA-HP1');
 xtickangle(90);
 
 
@@ -256,7 +256,7 @@ yticks([1e4, 1e6,1e8,1e10]);
 set(gca, 'YScale','log');
 xlim([0 16]);
 xticks(0:2:16);
-title('PSA HS6');
+title('PSA-HS6');
 xtickangle(90);
 
 

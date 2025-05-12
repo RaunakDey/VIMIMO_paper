@@ -167,8 +167,8 @@ ylim([1e4 1e11]);
   % you can run for all traces and find the quantile at which that
   % "Half-Gaussian" is cutoff (half-gaussian is an approximation).
 
-  cutoff = 300;
-   
+  %cutoff = 300;
+  cutoff = 200;
 
 count=1;
 
@@ -330,7 +330,7 @@ subplot(2,5,9)
 hold on;
 errorbar(time/60,mean(1e3*virus4'),std(1e3*virus4'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',red4, Color=red4);hold on;
 set(gca,'FontSize',18);
-title('PSA HP1');
+title('PSA-HP1');
 xticks(0:2:16);
 ylim([1e4 1e11]);
 xlim([0 16]);
@@ -342,7 +342,7 @@ subplot(2,5,10)
 hold on;
 errorbar(time/60,mean(1e3*virus5'),std(1e3*virus5'),'o','MarkerSize',8, 'MarkerEdgeColor','k','MarkerFaceColor',red5, Color=red5);hold on;
 set(gca,'FontSize',18);
-title('PSA HS6');
+title('PSA-HS6');
 xticks(0:2:16);
 ylim([1e4 1e11]);
 yticks([1e4, 1e6, 1e8, 1e10]);
