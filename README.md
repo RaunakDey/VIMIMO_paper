@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15314294.svg)](https://doi.org/10.5281/zenodo.15314294)
 <p align="center">
   <picture>
 <img width="1417" alt="logo" src="https://github.com/RaunakDey/VIMIMO-Virus-Microbe-modeller/assets/39820997/2a441485-ccb7-445d-917c-bd76aa658daf">
@@ -10,7 +11,7 @@
 *By Raunak Dey, 2025*
 
 
-This is the repository for the paper -- if you want to take a more detailed look you may find our project [VIMIMO](https://github.com/RaunakDey/VIMIMO-Virus-Microbe-modeller/) useful. In this repository all the ODE models, the Bayesian scripts and figure generating scripts can be found. The Bayesian analysis is performed used DRAM-MCMC algorithm using the open-sourced mcmcstat package. 
+This is the repository for the paper -- if you want to take a more detailed look you may find our project [VIMIMO](https://github.com/RaunakDey/VIMIMO-Virus-Microbe-modeller/) useful. In this repository all the ODE models, the Bayesian scripts and figure generating scripts can be found. The Bayesian analysis is performed used DRAM-MCMC algorithm (gradient free approach) using the open-sourced mcmcstat package. 
 
 ## Requirements and installation
 
