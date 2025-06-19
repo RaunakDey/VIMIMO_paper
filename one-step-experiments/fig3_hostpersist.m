@@ -127,13 +127,13 @@ x_axis = 1:2:16;
 gap = 0.1
 figure(1)
 errorbar(x_axis-gap,uninfected_ratio,uninfected_ratio_error,"Marker","o", ...
-    "MarkerEdgeColor","k","MarkerFaceColor","none","MarkerSize",10, ...
+    "MarkerEdgeColor","k","MarkerFaceColor","none","MarkerSize",15, ...
     "LineStyle","none","Color","k");
 
 hold on;
 
 errorbar(x_axis,infected_ratio,infected_ratio_error,"Marker","o", ...
-    "MarkerEdgeColor","k","MarkerFaceColor","k","MarkerSize",10, ...
+    "MarkerEdgeColor","k","MarkerFaceColor","k","MarkerSize",15, ...
     "LineStyle","none","Color","k");
 
 set(gca, 'FontSize', 20);
@@ -481,7 +481,7 @@ model_ratio(model_ratio<limit_of_detection) = 1e-7;
 %%
 figure(1)
 plot(x_axis+gap,model_ratio,"Marker","diamond", ...
-    "MarkerEdgeColor","k","MarkerFaceColor",[0.8,0.8,0.8],"MarkerSize",10, ...
+    "MarkerEdgeColor","k","MarkerFaceColor",[0.8,0.8,0.8],"MarkerSize",15, ...
     "LineStyle","none","Color","k");
 %yline(limit_of_detection,"LineWidth",3,"LineStyle","--")
 yticks([1e-7 1e-6 1e-5 1e-4 1e-3,1e-2,1e-1,1e0,1e1,1e2,1e3,1e4]);
@@ -490,7 +490,7 @@ yticklabels({'<10^{-7}','10^{-6}','10^{-5}','10^{-4}','10^{-3}','10^{-2}','10^{-
 ylim([1e-7,1e4]);
 yline(1,"LineWidth",3,"LineStyle","-.")
 
-xticklabels({'\phi18:3—CBA 4  ','\phi38:1—CBA 38  ','\phi18:2—CBA 18  ','\phi18:3—CBA 18  ','PSA HS6—PSA H100  ','PSA HS6—PSA 13-15  ','PSA HP1—PSA H100  ','PSA HP1—PSA 13-15  '})
+xticklabels({'\phi18:3—CBA 4  ','\phi38:1—CBA 38  ','\phi18:2—CBA 18  ','\phi18:3—CBA 18  ','PSA-HS6—PSA H100  ','PSA-HS6—PSA 13-15  ','PSA-HP1—PSA H100  ','PSA-HP1—PSA 13-15  '})
 xtickangle(90)
 ylabel("Host_{final}/Host_{initial}");
 legend('Uninfected (data)','Infected (data)','Pairwise model')
@@ -537,15 +537,15 @@ clear y0
 
 subplot(2,4,1)
 xline(training_time(1),'k--'); hold on;
-plot(time_opt,host_den,'LineWidth',5,'Color',[0.8,0.8,0.8]);
+plot(time_opt,host_den,'LineWidth',7,'Color',[0.8,0.8,0.8]);
 set(gca, 'YScale', 'log');
-set(gca,'FontName','Times','FontSize',18);
+set(gca,'FontName','Times','FontSize',24);
 ylim([1e-3 1e7])
 yticks([1e-3 1e-1 1e1 1e3 1e5 1e7]);
 xticks(0:2:16);
 xlim([0 16]);
-title('\phi18:3--CBA 4','Interpreter','latex');
-ylabel('Host density (genome copies/ml)')
+title('\phi18:3 — CBA 4');%,'Interpreter','latex');
+%ylabel('Host density (genome copies/ml)')
 xlabel('Time (hrs)')
 box on;
 
@@ -578,15 +578,15 @@ host_den = sum(y_series_opt(1:NE+2,:));
 
 subplot(2,4,2)
 xline(training_time(2),'k--'); hold on;
-plot(time_opt,host_den,'LineWidth',5,'Color',[0.8,0.8,0.8]);
+plot(time_opt,host_den,'LineWidth',7,'Color',[0.8,0.8,0.8]);
 set(gca, 'YScale', 'log');
-set(gca,'FontName','Times','FontSize',18);
+set(gca,'FontName','Times','FontSize',24);
 ylim([1e-3 1e7])
 yticks([1e-3 1e-1 1e1 1e3 1e5 1e7]);
 xticks(0:2:16);
 xlim([0 16]);
-title('\phi38:1--CBA 38','Interpreter','latex');
-ylabel('Host density (genome copies/ml)')
+title('\phi38:1 — CBA 38');
+%ylabel('Host density (genome copies/ml)')
 xlabel('Time (hrs)')
 box on;
 
@@ -620,15 +620,15 @@ time_opt=solved.x;
 host_den = sum(y_series_opt(1:NE+2,:));
 subplot(2,4,3)
 xline(training_time(3),'k--'); hold on;
-plot(time_opt,host_den,'LineWidth',5,'Color',[0.8,0.8,0.8]);
+plot(time_opt,host_den,'LineWidth',7,'Color',[0.8,0.8,0.8]);
 set(gca, 'YScale', 'log');
-set(gca,'FontName','Times','FontSize',18);
+set(gca,'FontName','Times','FontSize',24);
 ylim([1e-3 1e7])
 yticks([1e-3 1e-1 1e1 1e3 1e5 1e7]);
 xticks(0:2:16);
 xlim([0 16]);
-title('\phi18:2--CBA 18','Interpreter','latex');
-ylabel('Host density (genome copies/ml)')
+title('\phi18:2 — CBA 18');
+%ylabel('Host density (genome copies/ml)')
 xlabel('Time (hrs)')
 box on;
 
@@ -659,15 +659,15 @@ time_opt=solved.x;
 host_den = sum(y_series_opt(1:NE+2,:));
 subplot(2,4,4)
 xline(training_time(4),'k--'); hold on;
-plot(time_opt(1:2:end),host_den(1:2:end),'LineWidth',5,'Color',[0.8,0.8,0.8]);
+plot(time_opt(1:2:end),host_den(1:2:end),'LineWidth',7,'Color',[0.8,0.8,0.8]);
 set(gca, 'YScale', 'log');
-set(gca,'FontName','Times','FontSize',18);
+set(gca,'FontName','Times','FontSize',24);
 ylim([1e-3 1e7])
 yticks([1e-3 1e-1 1e1 1e3 1e5 1e7]);
 xticks(0:2:16);
 xlim([0 16]);
-title('\phi 18:3--CBA 18','Interpreter','latex');
-ylabel('Host density (genome copies/ml)')
+title('\phi18:3 — CBA 18');
+%ylabel('Host density (genome copies/ml)')
 xlabel('Time (hrs)')
 box on;
 
@@ -698,15 +698,15 @@ host_den = sum(y_series_opt(1:NE+2,:));
 
 subplot(2,4,5)
 xline(training_time(5),'k--'); hold on;
-plot(time_opt,host_den,'LineWidth',5,'Color',[0.8,0.8,0.8]);
+plot(time_opt,host_den,'LineWidth',7,'Color',[0.8,0.8,0.8]);
 set(gca, 'YScale', 'log');
-set(gca,'FontName','Times','FontSize',18);
+set(gca,'FontName','Times','FontSize',24);
 ylim([1e-3 1e7])
 yticks([1e-3 1e-1 1e1 1e3 1e5 1e7]);
 xticks(0:2:16);
 xlim([0 16]);
-title('PSA HS6--PSA H100','Interpreter','latex');
-ylabel('Host density (genome copies/ml)')
+title('PSA-HS6 — PSA H100');
+%ylabel('Host density (genome copies/ml)')
 xlabel('Time (hrs)')
 box on;
 
@@ -735,15 +735,15 @@ time_opt=solved.x;
 host_den = sum(y_series_opt(1:NE+2,:));
 subplot(2,4,6)
 xline(training_time(6),'k--'); hold on;
-plot(time_opt,host_den,'LineWidth',5,'Color',[0.8,0.8,0.8]);
+plot(time_opt,host_den,'LineWidth',7,'Color',[0.8,0.8,0.8]);
 set(gca, 'YScale', 'log');
-set(gca,'FontName','Times','FontSize',18);
+set(gca,'FontName','Times','FontSize',24);
 ylim([1e-3 1e7])
 yticks([1e-3 1e-1 1e1 1e3 1e5 1e7]);
 xticks(0:2:16);
 xlim([0 16]);
-title('PSA HS6--PSA 13-15','Interpreter','latex');
-ylabel('Host density (genome copies/ml)')
+title('PSA-HS6 — PSA 13-15');
+%ylabel('Host density (genome copies/ml)')
 xlabel('Time (hrs)')
 box on;
 
@@ -777,15 +777,15 @@ time_opt=solved.x;
 host_den = sum(y_series_opt(1:NE+2,:));
 subplot(2,4,7)
 xline(training_time(7),'k--'); hold on;
-plot(time_opt,host_den,'LineWidth',5,'Color',[0.8,0.8,0.8]);
+plot(time_opt,host_den,'LineWidth',7,'Color',[0.8,0.8,0.8]);
 set(gca, 'YScale', 'log');
-set(gca,'FontName','Times','FontSize',18);
+set(gca,'FontName','Times','FontSize',24);
 ylim([1e-3 1e7])
 yticks([1e-3 1e-1 1e1 1e3 1e5 1e7]);
 xticks(0:2:16);
 xlim([0 16]);
-title('PSA HP1--PSA H100','Interpreter','latex');
-ylabel('Host density (genome copies/ml)')
+title('PSA-HP1 — PSA H100');
+%ylabel('Host density (genome copies/ml)')
 xlabel('Time (hrs)')
 box on;
 
@@ -813,17 +813,17 @@ y_series_opt = solved.y;
 time_opt=solved.x;
 
 host_den = sum(y_series_opt(1:NE+2,:));
-%%
+
 subplot(2,4,8)
 xline(training_time(8),'k--'); hold on;
-plot(time_opt,host_den,'LineWidth',5,'Color',[0.8,0.8,0.8]);
+plot(time_opt,host_den,'LineWidth',7,'Color',[0.8,0.8,0.8]);
 set(gca, 'YScale', 'log');
-set(gca,'FontName','Times','FontSize',18);
+set(gca,'FontName','Times','FontSize',24);
 ylim([1e-3 1e7])
 yticks([1e-3 1e-1 1e1 1e3 1e5 1e7]);
 xticks(0:2:16);
 xlim([0 16]);
-title('PSA HP1-PSA 13:15');
-ylabel('Host density (genome copies/ml)')
+title('PSA-HP1 — PSA 13-15');
+%ylabel('Host density (genome copies/ml)')
 xlabel('Time (hrs)')
 box on;

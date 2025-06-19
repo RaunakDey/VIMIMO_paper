@@ -42,13 +42,13 @@ clear y0
 %S0_replicates = 2.4e6;
 %V0_replicates = 2.4e5;
 
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 
-dilution_factor = 100;
+dilution_factor = 1;
 
-tvec = 0:0.1:15;
+tvec = 0:0.1:15.8;
 [time_opt,y_series_opt] = one_step_simulate(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
 
 %%%%% new models
@@ -66,10 +66,14 @@ clear y0
 %S0_replicates = 2.4e6;
 %V0_replicates = 2.4e5;
 
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
-dilution_factor = 100;
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
+dilution_factor = 1;
+Dc = 1e5;
+
+[time_seivd, y_series_seivd] = one_step_simulate_seivd(tvec,y0,theta_optimized,NE_optimal,Dc);
+total_virus_seivd_pairwise = y_series_seivd(end-1,:);
 
 [time_ineffi_adsorb,y_series_ineffi_adsorb] = one_step_simulate_infec_vary_adsorbs_diffmodel(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
 total_virus_ineffi_adsorption_model = y_series_ineffi_adsorb(end,:)+y_series_ineffi_adsorb(end-1,:);
@@ -84,10 +88,12 @@ total_virus_lysis_res = y_series_lysis_res(end,:);
 
 subplot(4,4,1)
 
-plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
-plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
-plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+%plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
+%plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
+%plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+plot(time_seivd,total_virus_seivd_pairwise,'m','LineWidth',2);
+hold on;
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
@@ -96,12 +102,12 @@ title('CBA18-2 on CBA 18');
 set(gca,'FontSize',20);
 for i = 1:num_replicates
     for j = 1:3
-    plot(data.xdata{i}./60,data.ydata{i}(:,j),'mo'); hold on;
+    %plot(data.xdata{i}./60,data.ydata{i}(:,j),'mo'); hold on;
     end
 end
-xlim([0 15.75]);
+xlim([0 16]);
 %ylim([1e3 1e9]);
-yticks([1e3 1e5 1e7 1e9]);
+%yticks([1e3 1e5 1e7 1e9]);
 plot([0 945]/60, mean(qprc_virus'), 'Marker','square','MarkerEdgeColor','k','MarkerFaceColor','k','LineStyle','none');
 
 
@@ -110,21 +116,24 @@ host_den = sum(y_series_opt(1:end-1,:));
 host_den_ineff_adsorb = sum(y_series_ineffi_adsorb(1:end-2,:));
 host_den_ineff_infection =  sum(y_series_ineffi_infection(1:end-2,:));
 host_den_lysis_res = sum(y_series_lysis_res(1:end-1,:));
+host_den_seivd_paiwise = sum(y_series_seivd(1:end-2,:));
 
 subplot(4,4,2)
-plot(time_opt,host_den,'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
-plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
-plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+%plot(time_opt,host_den,'-k','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
+%plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
+%plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+plot(time_seivd,host_den_seivd_paiwise,'-m','LineWidth',2);hold on;
+hold on;
 
 set(gca,'YScale','log');
 xlabel('Time (hr)');
 ylabel('Host density (/ml)');
 set(gca,'FontSize',20);
 title('CBA18-2 on CBA 18');
-xlim([0 15.75]);
+xlim([0 16]);
 %ylim([1e-1 1e7]);
-yticks([1e-1, 1e1, 1e3, 1e5, 1e7]);
+%yticks([1e-1, 1e1, 1e3, 1e5, 1e7]);
 
 
 
@@ -132,6 +141,12 @@ plot([0 945]/60, mean(qprc_host'), 'Marker','square','MarkerEdgeColor','k','Mark
 
 
 %% 2
+
+qprc_host = 1e3*[1.04E+02	1.14E+02	2.28E+02;
+5.37E+02	5.26E+02	5.16E+02];
+
+qprc_virus = 1e3*[1.11E+04	1.30E+04	1.29E+04;
+1.97E+07	1.91E+07	1.90E+07];
 
 
 load('./data_2024/CBA18-3_4_2024.mat');
@@ -150,9 +165,9 @@ data.ydata{1} = free_phages;
 
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 
 dilution_factor = 100;
 
@@ -167,10 +182,14 @@ theta_optimized(6) = prob_effective_infection; %prob effective inhibition
 theta_optimized(7) = prob_lysis_reset; %prob lysis reset
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
-dilution_factor = 100;
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
+dilution_factor = 1;
+Dc = 10^5.5;
+
+[time_seivd, y_series_seivd] = one_step_simulate_seivd(tvec,y0,theta_optimized,NE_optimal,Dc);
+total_virus_seivd_pairwise = y_series_seivd(end-1,:);
 
 [time_ineffi_adsorb,y_series_ineffi_adsorb] = one_step_simulate_infec_vary_adsorbs_diffmodel(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
 total_virus_ineffi_adsorption_model = y_series_ineffi_adsorb(end,:)+y_series_ineffi_adsorb(end-1,:);
@@ -187,13 +206,16 @@ host_den = sum(y_series_opt(1:end-1,:));
 host_den_ineff_adsorb = sum(y_series_ineffi_adsorb(1:end-2,:));
 host_den_ineff_infection =  sum(y_series_ineffi_infection(1:end-2,:));
 host_den_lysis_res = sum(y_series_lysis_res(1:end-1,:));
+host_den_seivd_paiwise = sum(y_series_seivd(1:end-2,:));
 
 subplot(4,4,3)
 
-plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
-plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
-plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+%plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
+%plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
+%plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+plot(time_seivd,total_virus_seivd_pairwise,'-m','LineWidth',2);
+hold on;
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
@@ -202,11 +224,10 @@ title('CBA 18:3 on CBA 4');
 set(gca,'FontSize',20);
 for i = 1:num_replicates
     for j = 1:3
-    plot(data.xdata{i}./60,data.ydata{i}(:,j),'mo'); hold on;
+    %plot(data.xdata{i}./60,data.ydata{i}(:,j),'mo'); hold on;
     end
 end
 xlim([0 15.75]);
-ylim([1e3 1e9]);
 yticks([1e3 1e5 1e7 1e9])
 plot([0 945]/60, mean(qprc_virus'), 'Marker','square','MarkerEdgeColor','k','MarkerFaceColor','k','LineStyle','none');
 
@@ -214,10 +235,12 @@ plot([0 945]/60, mean(qprc_virus'), 'Marker','square','MarkerEdgeColor','k','Mar
 
 
 subplot(4,4,4)
-plot(time_opt,host_den,'-k','LineWidth',2);hold on;
-plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
-plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
-plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+%plot(time_opt,host_den,'-k','LineWidth',2);hold on;
+%plot(time_ineffi_adsorb,host_den_ineff_adsorb,'-r','LineWidth',2);hold on;
+%plot(time_ineffi_infection,host_den_ineff_infection,'-g','LineWidth',2);hold on;
+%plot(time_lysis_res,host_den_lysis_res,'-b','LineWidth',2);hold on;
+plot(time_seivd,host_den_seivd_paiwise,'-m','LineWidth',2);hold on;
+hold on;
 
 set(gca,'YScale','log');
 xlabel('Time (hr)');
@@ -242,9 +265,9 @@ load('parameters.mat','pars');
 
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 
 dilution_factor = 100;
 
@@ -261,10 +284,14 @@ theta_optimized(6) = prob_effective_infection; %prob effective inhibition
 theta_optimized(7) = prob_lysis_reset; %prob lysis reset
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 dilution_factor = 100;
+
+
+[time_seivd, y_series_seivd] = one_step_simulate_seivd(tvec,y0,theta_optimized,NE_optimal,Dc);
+total_virus_seivd_pairwise = y_series_seivd(end-1,:);
 
 [time_ineffi_adsorb,y_series_ineffi_adsorb] = one_step_simulate_infec_vary_adsorbs_diffmodel(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
 total_virus_ineffi_adsorption_model = y_series_ineffi_adsorb(end,:)+y_series_ineffi_adsorb(end-1,:);
@@ -282,6 +309,7 @@ host_den_ineff_adsorb = sum(y_series_ineffi_adsorb(1:end-2,:));
 host_den_ineff_infection =  sum(y_series_ineffi_infection(1:end-2,:));
 host_den_lysis_res = sum(y_series_lysis_res(1:end-1,:));
 
+
 subplot(4,4,5)
 
 
@@ -289,6 +317,7 @@ plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
 plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
 plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
 plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+plot(time_seivd,total_virus_seivd_pairwise,'m','LineWidth',2);
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
@@ -332,9 +361,9 @@ load('parameters.mat','pars');
 
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 
 dilution_factor = 100;
 
@@ -349,10 +378,14 @@ theta_optimized(6) = prob_effective_infection; %prob effective inhibition
 theta_optimized(7) = prob_lysis_reset; %prob lysis reset
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 dilution_factor = 100;
+
+
+[time_seivd, y_series_seivd] = one_step_simulate_seivd(tvec,y0,theta_optimized,NE_optimal,Dc);
+total_virus_seivd_pairwise = y_series_seivd(end-1,:);
 
 [time_ineffi_adsorb,y_series_ineffi_adsorb] = one_step_simulate_infec_vary_adsorbs_diffmodel(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
 total_virus_ineffi_adsorption_model = y_series_ineffi_adsorb(end,:)+y_series_ineffi_adsorb(end-1,:);
@@ -376,6 +409,7 @@ plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
 plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
 plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
 plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+plot(time_seivd,total_virus_seivd_pairwise,'m','LineWidth',2);
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
@@ -427,9 +461,9 @@ num_replicates = length(V0_replicates)/3;
 
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 
 dilution_factor = 100;
 tvec = 0:0.01:15.75;
@@ -442,10 +476,14 @@ theta_optimized(6) = prob_effective_infection; %prob effective inhibition
 theta_optimized(7) = prob_lysis_reset; %prob lysis reset
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 dilution_factor = 100;
+
+
+[time_seivd, y_series_seivd] = one_step_simulate_seivd(tvec,y0,theta_optimized,NE_optimal,Dc);
+total_virus_seivd_pairwise = y_series_seivd(end-1,:);
 
 [time_ineffi_adsorb,y_series_ineffi_adsorb] = one_step_simulate_infec_vary_adsorbs_diffmodel(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
 total_virus_ineffi_adsorption_model = y_series_ineffi_adsorb(end,:)+y_series_ineffi_adsorb(end-1,:);
@@ -470,6 +508,7 @@ plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
 plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
 plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
 plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+plot(time_seivd,total_virus_seivd_pairwise,'m','LineWidth',2);
 
 
 set(gca,'YScale','log');
@@ -518,9 +557,9 @@ num_replicates = length(V0_replicates)/3;
 
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 
 dilution_factor = 100;
 
@@ -534,10 +573,15 @@ theta_optimized(6) = prob_effective_infection; %prob effective inhibition
 theta_optimized(7) = prob_lysis_reset; %prob lysis reset
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 dilution_factor = 100;
+
+
+[time_seivd, y_series_seivd] = one_step_simulate_seivd(tvec,y0,theta_optimized,NE_optimal,Dc);
+total_virus_seivd_pairwise = y_series_seivd(end-1,:);
+
 
 [time_ineffi_adsorb,y_series_ineffi_adsorb] = one_step_simulate_infec_vary_adsorbs_diffmodel(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
 total_virus_ineffi_adsorption_model = y_series_ineffi_adsorb(end,:)+y_series_ineffi_adsorb(end-1,:);
@@ -561,6 +605,7 @@ plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
 plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
 plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
 plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+plot(time_seivd,total_virus_seivd_pairwise,'m','LineWidth',2);
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
@@ -610,9 +655,9 @@ num_replicates = length(V0_replicates)/3;
 
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 
 dilution_factor = 100;
 
@@ -626,10 +671,15 @@ theta_optimized(6) = prob_effective_infection; %prob effective inhibition
 theta_optimized(7) = prob_lysis_reset; %prob lysis reset
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 dilution_factor = 100;
+
+
+[time_seivd, y_series_seivd] = one_step_simulate_seivd(tvec,y0,theta_optimized,NE_optimal,Dc);
+total_virus_seivd_pairwise = y_series_seivd(end-1,:);
+
 
 [time_ineffi_adsorb,y_series_ineffi_adsorb] = one_step_simulate_infec_vary_adsorbs_diffmodel(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
 total_virus_ineffi_adsorption_model = y_series_ineffi_adsorb(end,:)+y_series_ineffi_adsorb(end-1,:);
@@ -654,6 +704,7 @@ plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
 plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
 plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
 plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+plot(time_seivd,total_virus_seivd_pairwise,'m','LineWidth',2);
 
 set(gca,'YScale','log');
 xlabel('Time (hr)')
@@ -710,9 +761,9 @@ num_replicates = length(V0_replicates)/3;
 
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 
 dilution_factor = 100;
 
@@ -726,10 +777,13 @@ theta_optimized(6) = prob_effective_infection; %prob effective inhibition
 theta_optimized(7) = prob_lysis_reset; %prob lysis reset
 NE_optimal = round(theta_optimized(5));
 clear y0
-y0(1) = mean(S0_replicates);
+y0(1) = mean(mean(qprc_host(1,:)));
 y0(2:NE_optimal+2) = 0;
-y0(NE_optimal+3) = mean(V0_replicates);
+y0(NE_optimal+3) = mean(qprc_virus(1,:));
 dilution_factor = 100;
+
+[time_seivd, y_series_seivd] = one_step_simulate_seivd(tvec,y0,theta_optimized,NE_optimal,Dc);
+total_virus_seivd_pairwise = y_series_seivd(end-1,:);
 
 [time_ineffi_adsorb,y_series_ineffi_adsorb] = one_step_simulate_infec_vary_adsorbs_diffmodel(tvec,y0,theta_optimized,NE_optimal,dilution_factor);
 total_virus_ineffi_adsorption_model = y_series_ineffi_adsorb(end,:)+y_series_ineffi_adsorb(end-1,:);
@@ -755,6 +809,7 @@ plot(time_opt,y_series_opt(end,:),'-k','LineWidth',2);hold on;
 plot(time_ineffi_adsorb,total_virus_ineffi_adsorption_model,'-r','LineWidth',2);
 plot(time_ineffi_infection,total_virus_ineffi_infection_model,'-g','LineWidth',2);
 plot(time_lysis_res,total_virus_lysis_res,'-b','LineWidth',2);
+plot(time_seivd,total_virus_seivd_pairwise,'m','LineWidth',2);
 
 hold on;
 set(gca,'YScale','log');
