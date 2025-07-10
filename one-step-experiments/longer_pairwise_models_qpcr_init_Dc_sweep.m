@@ -15,15 +15,16 @@ blue6 = [0, 0, 139]/255;
 
 blue = [blue1;blue2;blue3;blue4;blue5;blue6];
 Dc_array = [1e4,1e5,1e6,5e6,10e6,20e6];
-
+moi_list = [];
+infectious_ratio = [1.72, 2.07, 1.64, 0.01, 3.3, 3.57, 1.87, 1.64]/100;
 %% 1
 
 qpcr_host = 1e3*[4.30E+02	2.66E+02	4.71E+02;
-2.90E+03	2.27E+03	2.71E+03];
+2.90E+03	2.27E+03	2.71E+03]*10;
 
 
-qpcr_virus = 0.0172*1e3*[1.50E+04	1.50E+04	1.37E+04;
-6.01E+08	5.57E+08	5.58E+08];
+qpcr_virus = 1e3*[1.50E+04	1.50E+04	1.37E+04;
+6.01E+08	5.57E+08	5.58E+08]/100;
 
 
 load('./data_2024/CBA18-2_18_2024.mat');
@@ -40,6 +41,8 @@ y0(2:NE_optimal+2) = 0;
 y0(NE_optimal+3) = mean(qpcr_virus(1,:));
 tvec = 0:0.1:15.8;
 
+moi = mean(qpcr_virus(1,:))/mean(qpcr_host(1,:));
+moi_list(end+1) = moi;
 
 total_virus_seivd_pairwise = cell(1,length(Dc_array));
 host_den_seivd_paiwise = cell(1,length(Dc_array));
@@ -55,7 +58,8 @@ for i = 1:length(Dc_array)
 end
 
 
-subplot(4,4,1)
+%subplot(4,4,1)
+subplot(2,1,1)
 for i = 1:length(Dc_array)
 hold on;
 plot(time_seivd{i},total_virus_seivd_pairwise{i},'LineWidth',2,'Color',blue(i,:));
@@ -70,7 +74,8 @@ xlim([0 16]);
 plot([0 945]/60, mean(qpcr_virus'), 'Marker','square','MarkerEdgeColor','k','MarkerFaceColor','k','LineStyle','none');
 
 
-subplot(4,4,2)
+%subplot(4,4,2)
+subplot(2,1,2)
 for i = 1:length(Dc_array)
 hold on;
 plot(time_seivd{i},host_den_seivd_paiwise{i},'LineWidth',2,'Color',blue(i,:));
@@ -93,6 +98,8 @@ qpcr_host = 1e3*[1.04E+02	1.14E+02	2.28E+02;
 qpcr_virus = 1e3*[1.11E+04	1.30E+04	1.29E+04;
 1.97E+07	1.91E+07	1.90E+07];
 
+moi = mean(qpcr_virus(1,:))/mean(qpcr_host(1,:));
+moi_list(end+1) = moi;
 
 load('./data_2024/CBA18-3_4_2024.mat');
 
@@ -168,6 +175,9 @@ qpcr_host = 1e3*[3.32E+02	2.26E+02	3.80E+02;
 qpcr_virus = 1e3*[1.08E+04	1.12E+04	1.22E+04;
 6.36E+07	5.93E+07	4.98E+07];
 
+moi = mean(qpcr_virus(1,:))/mean(qpcr_host(1,:));
+moi_list(end+1) = moi;
+
 load('./data_2024/CBA18-3_18_2024.mat');
 
 
@@ -240,6 +250,8 @@ qpcr_host = 1e3*[1.07E+02	1.15E+02	1.00E+02;
 qpcr_virus = 1e3*[3.86E+05	4.23E+05	4.22E+05;
 9.79E+06	9.57E+06	9.60E+06];
 
+moi = mean(qpcr_virus(1,:))/mean(qpcr_host(1,:));
+moi_list(end+1) = moi;
 
 load('./data_2024/CBA38-1_38.mat');
 
@@ -307,6 +319,9 @@ qpcr_host = 1e3*[8.79E+01	5.59E+01	2.70E+01;
 
 qpcr_virus = 1e3*[2.55E+03	3.41E+03	3.51E+03;
 8.25E+07	7.98E+07	7.45E+07];
+
+moi = mean(qpcr_virus(1,:))/mean(qpcr_host(1,:));
+moi_list(end+1) = moi;
 
 
 load('./data_2024/HP1_H100_2024.mat');
@@ -384,6 +399,10 @@ qpcr_host = 1e3*[1.58E+02	9.28E+01	2.59E+02;
 qpcr_virus = 1e3*[4.22E+03	3.60E+03	3.37E+03;
 5.54E+07	5.31E+07	5.46E+07];
 
+moi = mean(qpcr_virus(1,:))/mean(qpcr_host(1,:));
+moi_list(end+1) = moi;
+
+
 load('./data_2024/HP1_13-15_2024.mat');
 
 name = string(labels.phage)+'_'+string(labels.host);
@@ -453,6 +472,10 @@ qpcr_host = 1e3*[1.16E+01	6.26E+01	6.66E+01;
 
 qpcr_virus = 1e3*[1.05E+04	6.57E+06	1.09E+04;
 2.08E+08	1.68E+08	1.85E+08];
+
+
+moi = mean(qpcr_virus(1,:))/mean(qpcr_host(1,:));
+moi_list(end+1) = moi;
 
 
 load('./data_2024/HS6_H100_2024.mat');
@@ -526,6 +549,11 @@ qpcr_host = 1e3*[9.02E+01	4.22E+02	1.03E+02;
 
 qpcr_virus = 1e3*[1.02E+04	1.07E+04	1.21E+04;
 1.03E+08	9.02E+07	9.36E+07];
+
+
+moi = mean(qpcr_virus(1,:))/mean(qpcr_host(1,:));
+moi_list(end+1) = moi;
+
 
 load('./data_2024/HS6_13-15_2024.mat');
 
@@ -607,3 +635,9 @@ legend('D_c = 1e4 cells/ml', ...
 
 
 legend('show');
+
+%%
+
+moi_list
+
+moi_list.*infectious_ratio
