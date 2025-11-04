@@ -1,9 +1,11 @@
-function [t, S, V, D, I,E] = simulate_ode(model, pars, tvec, S0, V0)
+function [t, S, V, D, I,E] = simulate_ode_noninfec(model, pars, tvec, S0, V0)
 
 % set up initial conditions
 y0 = model.zeros();
 y0(model.id.S) = S0;
-y0(model.id.V) = V0;
+
+%initially every virion is infectious.
+y0(model.id.V_infec) = V0;
 
 host_growth = model.host_growth ;
 viral_decay = model.viral_decay ;
@@ -22,21 +24,14 @@ NE  = round(max(max(pars.NE)));
 
 if model.name == 'SEIV'+string(model.NE)
     model = SEIV_diff_NE(model.NH,model.NV,NE);
-    fprintf("Debug: this is the SEIV model! \n");
-
+elseif model.name == 'SEIV-noninfectious' 
+    model = SEIV_diff_NE_ineffi_infection(model.NH,model.NV,NE);
 elseif strcmp(model.name,'SEIVD-diffabs-diffbeta')
     model = SEIVD_diff_NE_diff_debris_abs_diffbeta(model.NH,model.NV,NE);
-    fprintf("Debug: this is the SEIVD diffabs diffbeta model! \n");
-    
 elseif strcmp(model.name,'SEIVD-diffabs')
     model = SEIVD_diff_NE_diff_debris_abs(model.NH,model.NV,NE);
-    %fprintf("Debug: this is the SEIVD diffabs model! \n");
-    
-    
 else
     model = SEIVD_diff_NE_diff_debris(model.NH,model.NV,NE);
-    fprintf("Debug: this is the SEIVD debris model! \n");
-    
 
 end
 
