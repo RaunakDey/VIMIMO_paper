@@ -51,8 +51,11 @@ mcmcmodel.sigma2 = 150;
 mcmcmodel.S20 = 150;
 mcmcmodel.N0 = 1; % noninformative
 
-mcmcoptions.nsimu = 10000;
-[mcmcresults_continued, chain_continues, s2chain_continues]= mcmcrun(mcmcmodel,data,mcmcparam,mcmcoptions);
+
+%%
+
+mcmcoptions.nsimu = 50000;
+[mcmcresults_continued3, chain_continues3, s2chain_continues]= mcmcrun(mcmcmodel,data,mcmcparam,mcmcoptions,mcmcresults_continued2);
 
 
 %% sanity checks -- only for Raunak -- do not run
