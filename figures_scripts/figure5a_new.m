@@ -6,7 +6,7 @@ addpath(genpath('./../'));
 load('./../community/data/qpcr','data'); % qpcr data
 load('./../community/data/parameters_example','pars'); % parameters without nans
 pars1 = pars;
-load('./../community/data/parameters'); % true parameter set with nans
+%load('./../community/data/parameters'); % true parameter set with nans
 
 %% simulate trajectory before inference
 

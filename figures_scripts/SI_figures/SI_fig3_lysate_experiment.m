@@ -16,13 +16,14 @@ color_green =[171,193,157]./255;
 %% cba 4
 
 load("./../../one-step-experiments/host_data/cba4.mat");
-subplot(2,5,1);
+subplot(2,5,2);
 plot(time2, conversion_unit(1)*( no_phage - blank_correction*blank) ,"Marker",'square','MarkerSize',10 ,'Color','k','LineStyle','none','MarkerFaceColor','w','MarkerEdgeColor','k');
 
 hold on;
 plot(time2, (phage_18_3 - blank_correction*blank)*conversion_unit(1),"Marker",'o','MarkerSize',10 ,'Color','k','LineStyle','none','MarkerFaceColor','k','MarkerEdgeColor','k');
 
 
+cba4_no_phage = conversion_unit(1)*( no_phage - blank_correction*blank);
 
 
 
@@ -51,7 +52,7 @@ xlim([0 15.75]);
 
 load("./../../one-step-experiments/host_data/cba18.mat");
 
-subplot(2,5,2);
+subplot(2,5,1);
 plot(time2,(no_phage - blank_correction*blank)*conversion_unit(2),"Marker",'square','MarkerSize',10 ,'Color','k','LineStyle','none','MarkerFaceColor','w','MarkerEdgeColor','k');
 hold on;
 plot(time2, (phage_18_2 - blank_correction*blank)*conversion_unit(2),"Marker",'o','MarkerSize',10 ,'Color','k','LineStyle','none','MarkerFaceColor','k','MarkerEdgeColor','k');
@@ -113,6 +114,8 @@ load("./../../one-step-experiments/host_data/host_spent_media/CBA18-38-1.mat")
 plot(time,conversion_unit(2)*debris_added,'o', 'MarkerEdgeColor','k','MarkerFaceColor',color_green,'LineStyle','none',MarkerSize=8);
 xlim([0 15.75]);
 
+
+cba18_no_phage = (no_phage- blank_correction*blank)*conversion_unit(2)
 %% cba 38
 
 load("./../../one-step-experiments/host_data/cba38.mat");
@@ -137,6 +140,7 @@ load("./../../one-step-experiments/host_data/host_spent_media/CBA38-38-1.mat")
 plot(time,conversion_unit(3)*debris_added,'o', 'MarkerEdgeColor','k','MarkerFaceColor',color_green,'LineStyle','none',MarkerSize=8);
 xlim([0 15.75]);
 
+cba38_no_phage = (no_phage- blank_correction*blank)*conversion_unit(3)
 
 %% psa h100
 
@@ -163,7 +167,7 @@ plot(time,conversion_unit(4)*debris_added,'o', 'MarkerEdgeColor','k','MarkerFace
 xlim([0 15.75]);
 
 
-subplot(2,5,7)
+subplot(2,5,8)
 plot(time2,(no_phage - blank_correction*blank)*conversion_unit(4),"Marker",'square','MarkerSize',10 ,'Color','k','LineStyle','none','MarkerFaceColor','w','MarkerEdgeColor','k');
 hold on;
 plot(time2,(phage_hs6 - blank_correction*blank)*conversion_unit(4),"Marker",'o','MarkerSize',10 ,'Color','k','LineStyle','none','MarkerFaceColor','k','MarkerEdgeColor','k');
@@ -183,12 +187,15 @@ load("./../../one-step-experiments/host_data/host_spent_media/h100_hs6.mat")
 plot(time,conversion_unit(4)*debris_added,'o', 'MarkerEdgeColor','k','MarkerFaceColor',color_green,'LineStyle','none',MarkerSize=8);
 xlim([0 15.75]);
 
+
+h100_no_phage = (no_phage- blank_correction*blank)*conversion_unit(4)
+
 %% psa 13-15
 
 
 load("./../../one-step-experiments/host_data/psa_13_15.mat");
 
-subplot(2,5,8)
+subplot(2,5,7)
 plot(time2,(no_phage - blank_correction*blank)*conversion_unit(5),"Marker",'square','MarkerSize',10 ,'Color','k','LineStyle','none','MarkerFaceColor','w','MarkerEdgeColor','k');
 hold on;
 plot(time2,(phage_hp1 - blank_correction*blank)*conversion_unit(5),"Marker",'o','MarkerSize',10 ,'Color','k','LineStyle','none','MarkerFaceColor','k','MarkerEdgeColor','k');
@@ -207,6 +214,8 @@ ylabel('Host density (CFU/ml)')
 load("./../../one-step-experiments/host_data/host_spent_media/1315_hp1.mat")
 plot(time,conversion_unit(5)*debris_added,'o', 'MarkerEdgeColor','k','MarkerFaceColor',color_green,'LineStyle','none',MarkerSize=8);
 xlim([0 15.75]);
+
+psa1315_no_phage = (no_phage- blank_correction*blank)*conversion_unit(5)
 
 %%
 subplot(2,5,9)

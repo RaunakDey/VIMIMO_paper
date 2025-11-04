@@ -35,6 +35,7 @@ pars.NE(5,5) = 187;
 pars1.NE = pars.NE;
 max_NE = round(max(max(pars.NE)));
 model =  SEIVD_diff_NE_diff_debris_abs(5,5,max_NE);
+model.name = 'SEIVD-diffabs';
 model.host_growth = 0;
 model.viral_decay = 0;
 model.viral_adsorb = 0;
@@ -210,7 +211,7 @@ pars1.r = [0.19,0.245,0.22,0.28,0.25]';
 
 % rewrite pars1
 pars1.beta =[0    1.9         0         0         0;
-   126.5   63.8    100         0         0;
+   126.5   63.8    100        0         0;
          0         0   36.5         0         0;
          0         0         0   75.1   431.35 ;
          0         0         0   87.2  324.1];
@@ -239,6 +240,13 @@ pars_sample.Dc2 = 10^(log(pars1.Dc2)/log(10) + (rand - 0.5));
 pars_sample.Dc3 = 10^(log(pars1.Dc3)/log(10) + (rand - 0.5));
 pars_sample.Dc4 = 10^(log(pars1.Dc4)/log(10) + (rand - 0.5));
 pars_sample.Dc5 = 10^(log(pars1.Dc5)/log(10) + (rand - 0.5));
+
+% turn off to check
+% pars_sample.Dc = 10^15; % in log space \sigma = 0.5;
+% pars_sample.Dc2 = 10^15;
+% pars_sample.Dc3 = 10^15;
+% pars_sample.Dc4 = 10^15;
+% pars_sample.Dc5 = 10^15;
 
 [t1,S1,V1,~] = simulate_ode(model,pars_sample,tvec,pars_sample.S0,pars_sample.V0); % initial parameter set
 

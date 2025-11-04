@@ -1,4 +1,4 @@
-clear all;
+ clear all;
 clc;
 
 
@@ -564,11 +564,11 @@ title({'Burst size', '\beta (virions/cell)'});
 ylim([1 600]);
 set(gca,'FontName','Times','FontSize',18);
 xticks(1:8)
-xticklabels([1,2,3,5,6,7,8,9]);
+xticklabels({'\phi18:2 – CBA 18','\phi18:3 – CBA 4','\phi18:3 – CBA 18','\phi38:1 – CBA 38','PSA HP1 – PSA H100','PSA HP1 – PSA 13-15','PSA HS6 – PSA H100','PSA HS6 – PSA 13-15'});
 yticks(0:100:600);
 ylim([-1 600])
 xlim([0 9]);
-
+xtickangle(90)
 
 subplot(1,5,2)
 plot(x-0.1,tau_onestep_conventional,'^','MarkerSize',14,'MarkerFaceColor',color_def2,'Color',color_def2,LineWidth=2);
@@ -578,9 +578,9 @@ title({'Latent period',' \tau (hr)'});
 ylim([0.2 3]);
 set(gca,'FontName','Times','FontSize',18);
 xticks(1:8);
-xticklabels([1,2,3,5,6,7,8,9]);
+xticklabels({'\phi18:2 – CBA 18','\phi18:3 – CBA 4','\phi18:3 – CBA 18','\phi38:1 – CBA 38','PSA HP1 – PSA H100','PSA HP1 – PSA 13-15','PSA HS6 – PSA H100','PSA HS6 – PSA 13-15'});
 xlim([0 9]);
-
+xtickangle(90)
 
 subplot(1,5,4)
 errorbar([1 2 3 4 5 6 7 8 9]-0.1,phi_onestep_conventional,phi_one_step_conventional_error,'^','MarkerSize',14,'MarkerFaceColor',color_def2,'Color',color_def2,LineWidth=2);
@@ -590,11 +590,11 @@ title({'Adsorption rate','\phi (ml/hr)'})
 ylim([1e-10 2.5e-7]);
 set(gca,'FontName','Times','FontSize',18);
 xticks(1:9)
-xticklabels([1,2,3,4,5,6,7,8,9]);
+xticklabels({'\phi18:2 – CBA 18','\phi18:3 – CBA 4','\phi18:3 – CBA 18','\phi38:1 – CBA 38','PSA HP1 – PSA H100','PSA HP1 – PSA 13-15','PSA HS6 – PSA H100','PSA HS6 – PSA 13-15'});
 xlim([0 10]);
 %legend('Conventional','Bayesian');
 %legend('boxoff');
-
+xtickangle(90)
 
 
 cv_mean_onestep  = 1./sqrt(boxes_onestep);
@@ -606,14 +606,15 @@ errorbar(x,cv_mean_onestep,cv_onestep_error,'ko','MarkerSize',14,'MarkerFaceColo
 title({'Coefficient of',' variation of \tau (CV)'});
 set(gca,'FontName','Times','FontSize',18);
 xticks(1:8);
-xticklabels([1,2,3,5,6,7,8,9]);
+xticklabels({'\phi18:2 – CBA 18','\phi18:3 – CBA 4','\phi18:3 – CBA 18','\phi38:1 – CBA 38','PSA HP1 – PSA H100','PSA HP1 – PSA 13-15','PSA HS6 – PSA H100','PSA HS6 – PSA 13-15'});
+
 ylim([0 0.35])
 %yticks(0:0.1:0.3);
 xlim([0 9]);
-
+xtickangle(90)
 
 subplot(1,5,5)
-errorbar([1:5] ,r_onestep_conventional,r_onestep_conventional_error,'^','MarkerSize',14,'MarkerFaceColor',color_def2,'Color',color_def2,LineWidth=2);
+errorbar(1:5 ,r_onestep_conventional,r_onestep_conventional_error,'^','MarkerSize',14,'MarkerFaceColor',color_def2,'Color',color_def2,LineWidth=2);
 hold on;
 %errorbar([1:5]+0.1, r_onestep, r_onestep_error,'bo','MarkerSize',14,'MarkerFaceColor',[0.5,0.5,0.5],'Color',[0.5,0.5,0.5],LineWidth=2);
 

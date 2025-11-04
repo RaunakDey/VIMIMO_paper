@@ -61,7 +61,7 @@ xlim([0 4]);
 set(gca,'FontSize',18);
 ylabel('\beta (virions/cell)');
 
-title('Burst size of HP1');
+title('Burst size of PSA-HP1');
 %legend('HP1 on all hosts','HP1 on H100','HP1 on 13-15')
 set(gca,'fontname','times');
 ylim([0 600]);
@@ -127,7 +127,7 @@ xlim([0 4]);
 
 set(gca,'FontSize',18);
 ylabel('\beta (virions/cell)');
-title('Burst size of HS6');
+title('Burst size of PSA-HS6');
 %legend('HP1 on all hosts','HP1 on H100','HP1 on 13-15')
 set(gca,'fontname','times');
 ylim([0 600]);
@@ -191,7 +191,7 @@ xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','k','MarkerFaceColor','k','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
 set(gca,'FontSize',18)
-title('PSA HP1—all hosts');
+title('PSA-HP1—all hosts');
 ylim([1e2 1e8]);
 %xlim([0 3.5]);
 xticks([0 0.5 1 1.5 2 2.5 3 3.5]);
@@ -204,6 +204,16 @@ xlim([0 2.5]);
 xlabel("Time (hrs)");
 ylabel("Free phage density (Virions/ml)");
 set(gca,'fontname','times');
+
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
 
 
 subplot(2,4,2)
@@ -244,7 +254,7 @@ xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','k','MarkerFaceColor','k','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
 set(gca,'FontSize',18)
-title('PSA HP1—PSA H100');
+title('PSA-HP1—PSA H100');
 ylim([1e2 1e8]);
 %xlim([0 3.5]);
 xticks([0 0.5 1 1.5 2 2.5 3 3.5]);
@@ -256,6 +266,19 @@ xlim([0 2.5]);
 xlabel("Time (hrs)");
 ylabel("Free phage density (Virions/ml)");
 set(gca,'fontname','times');
+
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
+
+
+
 
 
 subplot(2,4,3)
@@ -295,7 +318,7 @@ xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','k','MarkerFaceColor','k','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
 set(gca,'FontSize',18)
-title('PSA HP1—PSA 13-15');
+title('PSA-HP1—PSA 13-15');
 ylim([1e2 1e8]);
 %xlim([0 3.5]);
 xticks([0 0.5 1 1.5 2 2.5 3 3.5]);
@@ -307,6 +330,18 @@ xlim([0 1.75]);
 xlabel("Time (hrs)");
 ylabel("Free phage density (Virions/ml)");
 set(gca,'fontname','times');
+
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
+
+
 
 
 
@@ -351,7 +386,7 @@ xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','k','MarkerFaceColor','k','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
 set(gca,'FontSize',18)
-title('PSA HS6—all hosts');
+title('PSA-HS6—all hosts');
 ylim([1e2 1e8]);
 %xlim([0 3.5]);
 xticks([0 0.5 1 1.5 2 2.5 3 3.5]);
@@ -363,6 +398,18 @@ xlim([0 2.5]);
 xlabel("Time (hrs)");
 ylabel("Free phage density (Virions/ml)");
 set(gca,'fontname','times');
+
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
+
+
 
 
 
@@ -402,7 +449,7 @@ xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','k','MarkerFaceColor','k','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
 set(gca,'FontSize',18)
-title('PSA HS6—PSA H100');
+title('PSA-HS6—PSA H100');
 ylim([1e2 1e8]);
 %xlim([0 3.5]);
 xticks([0 0.5 1 1.5 2 2.5 3 3.5]);
@@ -414,6 +461,23 @@ xlim([0 3.5]);
 xlabel("Time (hrs)");
 ylabel("Free phage density (Virions/ml)");
 set(gca,'fontname','times');
+
+
+
+load("./../../one-step-experiments/results_same_phi/HS6_H100_3-inferred.mat")
+subplot(2,4,6)
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
+
+%%
+
 
 
 
@@ -455,7 +519,7 @@ xtickangle(45)
 %plot(0,y_series2(1,1),'MarkerEdgeColor','k','MarkerFaceColor','k','Marker','square','MarkerSize',8);
 set(gca, 'YScale', 'log');
 set(gca,'FontSize',18)
-title('PSA HS6—PSA 13-15');
+title('PSA-HS6—PSA 13-15');
 ylim([1e2 1e8]);
 %xlim([0 3.5]);
 xticks([0 0.5 1 1.5 2 2.5 3 3.5]);
@@ -468,3 +532,12 @@ xlabel("Time (hrs)");
 ylabel("Free phage density (Virions/ml)");
 set(gca,'fontname','times');
 
+hold on;
+clear y
+clear y0
+NE =  round(median(chain_effective(i,5)));
+y(1,1) = S0;
+y(1,2:NE+2) = 0;
+y(1,NE+3) = V0;
+[time2,y_series2,time_abs,pre_dil] = one_step_simulate(tvec_long,y,median(chain_effective(:,:)),NE, dilution_factor);
+plot(time2,y_series2(end,:),'k--','LineWidth',2);
